@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Marketing{% endblock %}
+
+{% block body %}
+    <h1>Marketing</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ marketing.id }}</td>
+            </tr>
+            <tr>
+                <th>Mail</th>
+                <td>{{ marketing.mail }}</td>
+            </tr>
+            <tr>
+                <th>Source</th>
+                <td>{{ marketing.source }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('marketing_index') }}">back to list</a>
+
+    <a href="{{ path('marketing_edit', {'id': marketing.id}) }}">edit</a>
+
+    {{ include('marketing/_delete_form.html.twig') }}
+{% endblock %}

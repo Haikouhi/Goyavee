@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Marketing index{% endblock %}
+
+{% block body %}
+    <h1>Marketing index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Mail</th>
+                <th>Source</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for marketing in marketings %}
+            <tr>
+                <td>{{ marketing.id }}</td>
+                <td>{{ marketing.mail }}</td>
+                <td>{{ marketing.source }}</td>
+                <td>
+                    <a href="{{ path('marketing_show', {'id': marketing.id}) }}">show</a>
+                    <a href="{{ path('marketing_edit', {'id': marketing.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('marketing_new') }}">Create new</a>
+{% endblock %}

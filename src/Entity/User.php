@@ -87,11 +87,17 @@ class User implements UserInterface
      */
     private $comments;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Event", mappedBy="organizer", orphanRemoval=true)
+     */
+    private $events;
+
     public function __construct()
     {
         $this->event = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->createdAt = new \DateTime();
+        $this->events = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -323,5 +329,13 @@ class User implements UserInterface
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Event[]
+     */
+    public function getEvents(): Collection
+    {
+        return $this->events;
     }
 }

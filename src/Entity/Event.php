@@ -49,16 +49,6 @@ class Event
     private $created_at;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $id_location;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $id_organizer;
-
-    /**
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
@@ -79,10 +69,17 @@ class Event
      */
     private $comments;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="events")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $organizer;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->created_at = new \DateTime();
     }
 
     public function getId(): ?int
@@ -158,30 +155,6 @@ class Event
     public function setCreatedAt(\DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
-
-        return $this;
-    }
-
-    public function getIdLocation(): ?int
-    {
-        return $this->id_location;
-    }
-
-    public function setIdLocation(int $id_location): self
-    {
-        $this->id_location = $id_location;
-
-        return $this;
-    }
-
-    public function getIdOrganizer(): ?int
-    {
-        return $this->id_organizer;
-    }
-
-    public function setIdOrganizer(int $id_organizer): self
-    {
-        $this->id_organizer = $id_organizer;
 
         return $this;
     }
@@ -265,6 +238,18 @@ class Event
                 $comment->setEvent(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getOrganizer(): ?User
+    {
+        return $this->organizer;
+    }
+
+    public function setOrganizer(?User $organizer): self
+    {
+        $this->organizer = $organizer;
 
         return $this;
     }

@@ -97,6 +97,16 @@ class User implements UserInterface
      */
     private $events;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $rating;
+
     public function __construct()
     {
         $this->event = new ArrayCollection();
@@ -374,5 +384,29 @@ class User implements UserInterface
     public function getEvents(): Collection
     {
         return $this->events;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getRating(): ?int
+    {
+        return $this->rating;
+    }
+
+    public function setRating(?int $rating): self
+    {
+        $this->rating = $rating;
+
+        return $this;
     }
 }

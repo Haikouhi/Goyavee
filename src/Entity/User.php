@@ -43,7 +43,7 @@ class User implements UserInterface
     private $nickname;
 
     /**
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="string", length=45, nullable=true)
      */
     private $firstname;
 
@@ -53,7 +53,7 @@ class User implements UserInterface
     private $birthdate;
 
     /**
-     * @ORM\Column(type="string", length=10)
+     * @ORM\Column(type="string", length=10, nullable=true)
      */
     private $language;
 

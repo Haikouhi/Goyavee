@@ -79,10 +79,16 @@ class Event
      */
     private $comments;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Status", mappedBy="event")
+     */
+    private $statuses;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->statuses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -263,6 +269,37 @@ class Event
             // set the owning side to null (unless already changed)
             if ($comment->getEvent() === $this) {
                 $comment->setEvent(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Status[]
+     */
+    public function getStatuses(): Collection
+    {
+        return $this->statuses;
+    }
+
+    public function addStatus(Status $status): self
+    {
+        if (!$this->statuses->contains($status)) {
+            $this->statuses[] = $status;
+            $status->setEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStatus(Status $status): self
+    {
+        if ($this->statuses->contains($status)) {
+            $this->statuses->removeElement($status);
+            // set the owning side to null (unless already changed)
+            if ($status->getEvent() === $this) {
+                $status->setEvent(null);
             }
         }
 

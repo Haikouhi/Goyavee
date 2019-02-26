@@ -91,6 +91,7 @@ class User implements UserInterface
     {
         $this->event = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->createdAt = new \DateTime();
     }
 
     public function getId(): ?int

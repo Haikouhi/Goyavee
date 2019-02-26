@@ -9,13 +9,35 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\LanguageType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
 
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email')
+            ->add('email', EmailType::class)
+            ->add('nickname', TextType::class)
+            ->add('firstname', TextType::class)
+            ->add('birthdate', BirthdayType::class)
+            ->add('language', LanguageType::class)
+            ->add('nationality', CountryType::class)
+            ->add('photo', FileType::class)
+            ->add('gender', ChoiceType::class, [
+                'choices' => [
+                    'Female' => 1,
+                    'Male'   => 2,
+                    "Rather Not say" => 3,
+                ]
+            ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
@@ -32,6 +54,7 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
+            
         ;
     }
 

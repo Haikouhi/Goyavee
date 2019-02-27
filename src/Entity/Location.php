@@ -58,6 +58,11 @@ class Location
      */
     private $events;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
+
     public function __construct()
     {
         $this->events = new ArrayCollection();
@@ -179,6 +184,18 @@ class Location
                 $event->setLocation(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }

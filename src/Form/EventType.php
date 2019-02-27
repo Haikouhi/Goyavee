@@ -36,7 +36,7 @@ class EventType extends AbstractType
             ]) 
             ->add('location', EntityType::class, [
                 'class' => Location::class,
-                'choice_label' => 'street_name'
+                'choice_label' => 'name'
             ])
             ->add('organizer', EntityType::class, [
                 'class' => User::class,

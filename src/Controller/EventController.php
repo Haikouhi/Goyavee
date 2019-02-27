@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Event;
+use App\Entity\Location;
 use App\Form\EventType;
 use App\Repository\EventRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,6 +21,7 @@ class EventController extends AbstractController
      */
     public function index(EventRepository $eventRepository): Response
     {
+        //dump($eventRepository->findAll()); die;
         return $this->render('event/index.html.twig', [
             'events' => $eventRepository->findAll(),
         ]);
@@ -30,6 +32,36 @@ class EventController extends AbstractController
      */
     public function new(Request $request): Response
     {
+
+      
+
+        // dump($request->request); die;
+        // dump($_POST[location[street_name]]); die;
+
+        // if (!$location) {
+
+        //     $location = new Location();
+        //     $location->setStreetName('Rue Flantier');
+        //     $location->setZip(56000);
+        //     $location->setCity('Lyon');
+        //     $location->setCountry('France');
+        //     $location->setLongitude(45.454);
+        //     $location->setLatitude(45.454);
+
+        //     // dump($location); die;
+    
+        //     $entityManager = $this->getDoctrine()->getManager();
+        //     $entityManager->persist($location);
+        //     $entityManager->flush();
+
+            
+
+        // }
+      
+        
+            // dump($location); die;
+            
+
         $event = new Event();
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);

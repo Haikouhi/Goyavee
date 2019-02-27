@@ -29,10 +29,10 @@
                 <td>{{ event.dateStart ? event.dateStart|date('Y-m-d') : '' }}</td>
                 <td>{{ event.dateEnd ? event.dateEnd|date('Y-m-d') : '' }}</td>
                 <td>{{ event.photo }}</td>
-                <td>{{ event.category }}</td>
+                <td>{{ event.category.name }}</td>
                 <td>{{ event.createdAt ? event.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ event.idLocation }}</td>
-                <td>{{ event.idOrganizer }}</td>
+                <td>{{ event.location.getStreetName }}</td>
+                <td>{{ event.organizer.getFirstname }}</td>
                 <td>{{ event.description }}</td>
                 <td>
                     <a href="{{ path('event_show', {'id': event.id}) }}">show</a>

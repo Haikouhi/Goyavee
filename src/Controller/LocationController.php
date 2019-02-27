@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * @Route("/location")
@@ -46,6 +47,49 @@ class LocationController extends AbstractController
             'location' => $location,
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/api/new", name="api_location_new", methods={"GET","POST"})
+     */
+    public function ApiNew(Request $request): Response
+    {
+
+
+        $location = new Location();
+        $location->setStreetName( $request->request->get('street_name') );
+        $location->setZip( $request->request->get('zip'));
+        $location->setCity( $request->request->get('city') );
+        $location->setCountry( $request->request->get('city') );
+        $location->setLongitude( $request->request->get('longitude') );
+        $location->setLatitude( $request->request->get('latitude') );
+
+        $location->setName( $request->request->get('name') );
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($location);
+        $entityManager->flush();
+
+        return new JsonResponse( $location->getId() );
+        
+        
+        /* 
+        $location = new Location();
+        $form = $this->createForm(LocationType::class, $location);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($location);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('location_index');
+        }
+
+        return $this->render('location/new.html.twig', [
+            'location' => $location,
+            'form' => $form->createView(),
+        ]); */
     }
 
     /**

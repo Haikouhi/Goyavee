@@ -38,10 +38,7 @@ class Event
      */
     private $photo;
 
-    /**
-     * @ORM\Column(type="string", length=45)
-     */
-    private $category;
+   
 
     /**
      * @ORM\Column(type="datetime")
@@ -75,10 +72,17 @@ class Event
     private $statuses;
 
     /**
+     * 
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="events")
      * @ORM\JoinColumn(nullable=false)
      */
     private $organizer;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="event")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
 
     public function __construct()
     {
@@ -141,18 +145,7 @@ class Event
         return $this;
     }
 
-    public function getCategory(): ?string
-    {
-        return $this->category;
-    }
-
-    public function setCategory(string $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
+    
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->created_at;
@@ -287,6 +280,18 @@ class Event
     public function setOrganizer(?User $organizer): self
     {
         $this->organizer = $organizer;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

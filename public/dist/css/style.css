@@ -80,8 +80,7 @@ a, label, input, .modal-title {
 .banner{
     width:100%;
     height: 100%;
-    background: url('../images/map2.jpg') no-repeat top center;
-    
+    background: url('map2.jpg') no-repeat top center;
     background-size: cover;
     top: 130px;
     z-index : 0;
@@ -117,28 +116,28 @@ input[type="submit"]{
 	border: 1px solid #DDDDDD;
 	border-radius: 3px;
 	position:relative;
-	background: url('../images/calendar.png') right center / auto 100% no-repeat, white;
+	background: url('calendar.png') right center / auto 100% no-repeat, white;
 }
 
 .pin {
 	border: 1px solid #DDDDDD;
 	border-radius: 3px;
 	position:relative;
-	background: url('../images/pin.png') right center / auto 100% no-repeat, white;
+	background: url('pin.png') right center / auto 100% no-repeat, white;
 }
 
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-    color: #414770;
+    color: black;
   }
   ::-moz-placeholder { /* Firefox 19+ */
-    color: #414770;
+    color: black;
   }
   :-ms-input-placeholder { /* IE 10+ */
-    color: #414770;
+    color: black;
   }
   :-moz-placeholder { /* Firefox 18- */
-    color: #414770;
+    color: black;
   }
 
 /* Modal signin */
@@ -350,7 +349,6 @@ fieldset[disabled] .btn-twitter.focus {
     background-color: #fff
 }
 
-/* Modal signup */
 
 /* Navbar apres-co */
 #nav-input[type="submit"]{
@@ -408,6 +406,8 @@ main{
 }
 .card-text{
     font-size : 0.9em;
+    color: #414770;
+
 }
 
 /* Card activity */
@@ -438,9 +438,7 @@ main{
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
 } 
-.creating-location{
-display: none;
-}
+
 
 .card-title{
     color: #414770;
@@ -518,6 +516,7 @@ z-index: 140;
     margin: 10px;
 }
 
+
 .hr-private-profile {
     height: 1px;
     background-color: #F5BE17;
@@ -526,7 +525,7 @@ z-index: 140;
 .rating-checked {
     color: orange;
 }
-    /* carousel */
+    /* carousel private/public*/
 .MultiCarousel {
     float: left;
     overflow: hidden;
@@ -573,6 +572,7 @@ z-index: 140;
     background: #ccc;
 }
   
+
 
  /* Footer */
 .bottom{
@@ -799,5 +799,3 @@ Extra large devices (large desktops, 1200px and up) */
     }
     
  }
-
-/* FIXME: RETINA PROBLEME */

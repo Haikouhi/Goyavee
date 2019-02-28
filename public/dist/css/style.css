@@ -117,14 +117,14 @@ input[type="submit"]{
 	border: 1px solid #DDDDDD;
 	border-radius: 3px;
 	position:relative;
-	background: url('calendar.png') right center / auto 100% no-repeat, white;
+	background: url('../images/calendar.png') right center / auto 100% no-repeat, white;
 }
 
 .pin {
 	border: 1px solid #DDDDDD;
 	border-radius: 3px;
 	position:relative;
-	background: url('pin.png') right center / auto 100% no-repeat, white;
+	background: url('../images/pin.png') right center / auto 100% no-repeat, white;
 }
 
 

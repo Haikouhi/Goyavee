@@ -26,8 +26,8 @@
             <tr>
                 <td>{{ event.id }}</td>
                 <td>{{ event.name }}</td>
-                <td>{{ event.dateStart ? event.dateStart|date('Y-m-d') : '' }}</td>
-                <td>{{ event.dateEnd ? event.dateEnd|date('Y-m-d') : '' }}</td>
+                <td>{{ event.dateStart ? event.dateStart|date('Y-m-d H:i') : '' }}</td>
+                <td>{{ event.dateEnd ? event.dateEnd|date('Y-m-d H:i') : '' }}</td>
                 <td>{{ event.photo }}</td>
                 <td>{{ event.category.name }}</td>
                 <td>{{ event.createdAt ? event.createdAt|date('Y-m-d H:i:s') : '' }}</td>

@@ -500,6 +500,79 @@ z-index: 140;
     z-index : 200;
 }
 
+/* Private profile */
+.profile_picture {
+    width: 180px;
+    height: 100%;
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    -ms-border-radius: 100px;
+    -o-border-radius: 100px;
+    margin: 10px;
+  }
+
+.icon-interest{
+    width: 10%;
+    height : auto;
+    margin: 10px;
+}
+
+.hr-private-profile {
+    height: 1px;
+    background-color: #F5BE17;
+    border: none;
+}
+.rating-checked {
+    color: orange;
+}
+    /* carousel */
+.MultiCarousel {
+    float: left;
+    overflow: hidden;
+    padding: 15px;
+    width: 100%;
+    position: relative;
+}
+
+.MultiCarousel .MultiCarousel-inner {
+    transition: 1s ease all;
+    float: left;
+}
+
+.MultiCarousel .MultiCarousel-inner .item {
+    float: left;
+}
+
+.MultiCarousel .MultiCarousel-inner .item>div {
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+    background: #dddddd;
+    color: #666;
+}
+
+.MultiCarousel .leftLst,
+.MultiCarousel .rightLst {
+    position: absolute;
+    border-radius: 50%;
+    top: calc(50% - 20px);
+}
+
+.MultiCarousel .leftLst {
+    left: 0;
+}
+
+.MultiCarousel .rightLst {
+    right: 0;
+}
+
+.MultiCarousel .leftLst.over,
+.MultiCarousel .rightLst.over {
+    pointer-events: none;
+    background: #ccc;
+}
+  
 
  /* Footer */
 .bottom{

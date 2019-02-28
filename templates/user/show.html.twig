@@ -11,11 +11,12 @@
     <div class="row">
         <div class="col-sm-12 col-md-4 col-lg-3">
             <div class="d-flex justify-content-center">
-                <img src="image.jpg" class="profile_picture" alt="profile_picture">
+                <img src="{{asset('dist/images/profile-picture.jpg') }}" class="profile_picture" alt="profile_picture">
                 {# {{ user.photo }} à voir comment l'afficher #}
             </div>
             <p class="text-center">Hi {{ user.nickname }}</p>
             <p class="text-center"><a href="{{ path('user_edit', {'id': user.id}) }}">Modify Profile</a></p>
+            {# Lien à modifier : profil public #}
             <p class="text-center"><a href="public_profil.html">Public Profile</a></p>
 
             <div class="d-flex justify-content-center">
@@ -28,13 +29,13 @@
             <hr class="hr-private-profile">
             <div class="d-flex flex-wrap justify-content-center">
                 <div class="icon-interest">
-                    <img src="icon-music.png">
+                    <img src="{{asset('dist/images/icon-music.png') }}">
                 </div>
                 <div class="icon-interest">
-                    <img src="icon-movie.png">
+                    <img src="{{asset('dist/images/icon-movie.png') }}">
                 </div>
                 <div class="icon-interest">
-                    <img src="icon-museum.png">
+                    <img src="{{asset('dist/images/icon-museum.png') }}" >
                 </div>
             </div>
 

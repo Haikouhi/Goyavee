@@ -21,8 +21,8 @@ security:
                     - App\Security\FormAuthenticator
 
             logout:
-                path: app_logout
-                target: app_login
+                path: /logout
+                target: /
             # activate different ways to authenticate
 
             # http_basic: true

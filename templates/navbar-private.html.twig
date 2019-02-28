@@ -10,12 +10,13 @@
             <ul class="py-2">
                 <li class="px-3 py-2">
                     <a href="#">Modifier le profil</a>
+                    {# href="{{ path('user_edit', {'id': user.id}) }}" #}
                 </li>
                 <li class="px-3 py-2">
                     <a href="#">Invitez des amis</a>
                 </li>
                 <li class="px-3 py-2">
-                    <a href="#">Deconnexion</a>
+                    <a href="{{ path('logout') }}">Deconnexion</a>
                 </li>
             </ul>
         </nav>
@@ -35,6 +36,7 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">Profil</a>
+            {# href="{{ path('user_show', {'id': user.id}) }}" #}
         </li>
         <div class="d-none d-md-block nav-picture" id="profile_pic_desktop">
             <img src="{{ asset('dist/images/groot-icon.png') }}" alt="profile_picture">

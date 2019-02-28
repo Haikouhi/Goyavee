@@ -32,6 +32,12 @@ class CommentController extends AbstractController
     {
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
+
+        //retieve the id of the current user
+        $actualUser = $this->getUser();
+        //set the organizer with the current user
+        $comment->setOrganizer($actualUser);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

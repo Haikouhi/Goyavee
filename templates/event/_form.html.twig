@@ -1,13 +1,17 @@
-
-
 {{ form_start(form) }}
 
     
-    {{ form_widget(form) }}
-
+    {{ form_row(form.name) }}
+    {{ form_row(form.date_start) }}
+    {{ form_row(form.date_end) }}
+    {{ form_row(form.photo) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.category) }}
+    {{ form_row(form.location) }}
     
-
+    
     <button class="btn">{{ button_label|default('Save') }}</button>
+
 {{ form_end(form) }}
 
 

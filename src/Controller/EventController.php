@@ -64,9 +64,49 @@ class EventController extends AbstractController
 
         $event = new Event();
         $form = $this->createForm(EventType::class, $event);
+         //retieve the id of the current user
+
+         $actualUser = $this->getUser();
+
+         //set the organizer with the current user
+ 
+         $event->setOrganizer($actualUser);
+ 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // echo "<pre>";
+            // var_dump($this->getUser()->getId());
+            // var_dump($request->request->get('event')['organizer']);
+            // var_dump($request); die;
+
+        /********************************* ************************************/
+
+            //retrive the file send in the request
+            $file = $request->files->get('event')['photo'];
+
+            //put the path to the folder that will stock our files in a var
+            $uploads_directory = $this->getParameter('uploads_directory');
+
+            //create a var to change the name of the file
+            $filename = md5(uniqid()) . '.' . $file->guessExtension();
+
+            //move the file into the folder
+            $file->move(
+                $uploads_directory,
+                $filename
+            );
+
+            //set the event photo's attribut
+            $post = $event->setPhoto($filename);
+
+        /**********************************************************************/    
+
+
+       
+        
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($event);
             $entityManager->flush();

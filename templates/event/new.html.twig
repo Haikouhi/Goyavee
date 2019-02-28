@@ -1,11 +1,94 @@
+
+
+
 {% extends 'base.html.twig' %}
 
 {% block title %}New Event{% endblock %}
 
+
+
 {% block body %}
     <h1>Create new Event</h1>
+        <input id="locationAutocomplete" placeholder="Saisir une adresse" type="text"/>       
+        <input id="locationName" type="text" placeholder="Nom du lieu">
 
+        <button onclick="createLocation()">Créer le lieu</button>
+
+        <hr>
     {{ include('event/_form.html.twig') }}
 
     <a href="{{ path('event_index') }}">back to list</a>
+{% endblock %}
+
+
+{% block javascripts %}
+    <script>
+        var autocomplete;
+
+        var locationFields = {
+            street_number : 'street_number',
+            route : 'street_name',
+            locality : 'city',
+            country : 'country',
+            postal_code : 'zip'
+        };
+
+        var loc = {
+            street_number : null,
+            street_name : null,
+            zip : null,
+            city : null,
+            country : null,
+            longitude : null,
+            latitude : null,
+            name : null
+        };
+
+        function initAutocomplete() {
+            autocomplete = new google.maps.places.Autocomplete(document.getElementById('locationAutocomplete'), {types: ['geocode']});
+            autocomplete.setFields('address_components');
+            autocomplete.addListener('place_changed', fillInAddress);
+        }
+
+        function fillInAddress() {
+            var place = autocomplete.getPlace();
+
+            for (var i = 0; i < place.address_components.length; i++) {
+                var addressType = place.address_components[i].types[0];
+             
+                if (locationFields[addressType]) {
+                    loc[locationFields[addressType]] = place.address_components[i]['long_name'];
+                }
+            }
+
+            loc.latitude = place.geometry.location.lat();
+            loc.longitude = place.geometry.location.lng();
+
+        }
+
+        function createLocation() {
+
+            loc.name = document.getElementById('locationName').value;
+            
+            console.log(loc);
+
+            $.ajax({
+                type: "POST",
+                url: 'http://localhost:8000/location/api/new',
+                data: loc,
+                success: function(res) {
+
+
+                    $('#event_location').html('<option value="'+res+'" selected>'+loc.name+'</option>');
+                    console.log(res);
+
+                },
+                dataType: 'json'
+            });
+
+        }
+    </script>
+    <script async="async" defer="defer" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAp0p6ZMckQZeoLAfwASaASWkTtgxHBx7c&libraries=places&callback=initAutocomplete"></script>
+
+
 {% endblock %}

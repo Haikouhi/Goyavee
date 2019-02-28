@@ -28,7 +28,10 @@ class EventType extends AbstractType
             ->add('name', TextType::class)
             ->add('date_start', DateType::class)
             ->add('date_end', DateType::class)
-            ->add('photo', FileType::class)
+            ->add('photo', FileType::class, [
+                'mapped' => false,
+                'label' => 'Ajouter une photo'
+            ])
             ->add('description', TextareaType::class)
             ->add('category', EntityType::class, [
                 'class' => Category::class,
@@ -37,11 +40,11 @@ class EventType extends AbstractType
             ->add('location', EntityType::class, [
                 'class' => Location::class,
                 'choice_label' => 'name'
-            ])
-            ->add('organizer', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'id'
             ]);
+            // ->add('organizer', EntityType::class, [
+            //     'class' => User::class,
+            //     'choice_label' => 'nickname'
+            // ]);
 
 
 

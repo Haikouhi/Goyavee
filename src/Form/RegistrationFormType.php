@@ -25,7 +25,21 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class)
-            ->add('nickname', TextType::class)
+            ->add('nickname', TextType::class,[
+                // instead of being set onto the object directly,
+                // this is read and encoded in the controller
+                'constraints' => [
+                    
+                    new Length([
+                        'min' => 8,
+                        'minMessage' => 'Your nickname should be at least {{ limit }} characters',
+                        // max length allowed by Symfony for security reasons
+                        'max' => 20,
+                        'maxMessage' => 'Your nickname should be maximum {{ limit }} characters',
+
+                    ]),
+                ],
+            ])
             ->add('firstname', TextType::class)
             ->add('birthdate', BirthdayType::class)
             ->add('language', LanguageType::class)
@@ -35,7 +49,7 @@ class RegistrationFormType extends AbstractType
                 'choices' => [
                     'Female' => 1,
                     'Male'   => 2,
-                    "Rather Not say" => 3,
+                    "Rather not say" => 3,
                 ]
             ])
             ->add('plainPassword', PasswordType::class, [

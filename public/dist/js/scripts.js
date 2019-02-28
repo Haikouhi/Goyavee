@@ -89,3 +89,9 @@ if (document.getElementById('mapevent') !== null) {
     var marker = L.marker([46.6835956, -0.4137665]);
     marker.addTo(mapevent);
 } 
+
+// creating an event
+    // adding location
+    $('#btn-add-location').on('click', function(){
+        $('.creating-location').css("display", "block");
+    });

@@ -129,16 +129,16 @@ input[type="submit"]{
 
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-    color: black;
+    color: #414770;
   }
   ::-moz-placeholder { /* Firefox 19+ */
-    color: black;
+    color: #414770;
   }
   :-ms-input-placeholder { /* IE 10+ */
-    color: black;
+    color: #414770;
   }
   :-moz-placeholder { /* Firefox 18- */
-    color: black;
+    color: #414770;
   }
 
 /* Modal signin */
@@ -438,7 +438,9 @@ main{
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
 } 
-
+.creating-location{
+display: none;
+}
 
 .card-title{
     color: #414770;

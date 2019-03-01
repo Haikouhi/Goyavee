@@ -110,7 +110,7 @@
     });
 
 
-    var main = document.getElementById($this.{{ event.id }});
+    var main = document.getElementById(($this).data('event-id'));
         popup = document.getElementById('popup');
         main.addEventListener('mouseleave', function(){
     popup.style.display = 'block';

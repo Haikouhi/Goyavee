@@ -28,8 +28,18 @@ class EventType extends AbstractType
         // TODO: Terminer de typer les datas et résoudre le problème concernant les id_location et organizer
         $builder
             ->add('name', TextType::class)
-            ->add('date_start', DateType::class)
-            ->add('date_end', DateType::class)
+            ->add('date_start', DateType::class, array(
+                 'widget' => 'choice',
+                 'years'  => range(date('Y'), date('Y')+5),
+                 'months' => range(date('m'), date('m')+12),
+                 'days'   => range(date('d'), date('d')+31),
+            ))
+            ->add('date_end', DateType::class, array(
+                'widget' => 'choice',
+                'years'  => range(date('Y'), date('Y')+5),
+                'months' => range(date('m'), date('m')+12),
+                'days'   => range(date('d'), date('d')+31),
+           ))
             ->add('photo', FileType::class, [
                 'mapped' => false,
                 'label' => 'Ajouter une photo',

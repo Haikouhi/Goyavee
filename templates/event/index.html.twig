@@ -108,6 +108,16 @@
         });
 
     });
+
+
+    var main = document.getElementById($this.{{ event.id }});
+        popup = document.getElementById('popup');
+        main.addEventListener('mouseleave', function(){
+    popup.style.display = 'block';
+});
+        main.addEventListener('mouseenter', function(){
+        popup.style.display = 'none'
+    });
     
 
 </script>

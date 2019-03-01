@@ -17,6 +17,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class EventType extends AbstractType
 {
@@ -24,8 +25,8 @@ class EventType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('date_start', DateType::class)
-            ->add('date_end', DateType::class)
+            ->add('date_start', DateTimeType::class)
+            ->add('date_end', DateTimeType::class)
             ->add('photo', FileType::class, [
                 'mapped' => false,
                 'label' => 'Ajouter une photo'

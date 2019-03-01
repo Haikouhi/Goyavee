@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/user")
@@ -16,6 +18,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     /**
+     * Affichage de mon profil privé (edit)
+     * @IsGranted("ROLE_USER")
      * @Route("/", name="user_index", methods={"GET"})
      */
     public function index(UserRepository $userRepository): Response
@@ -49,7 +53,8 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="user_show", methods={"GET"})
+     * @IsGranted("ROLE_USER")
+     * @Route("/edit", name="user_edit", methods={"GET","POST"})
      */
     public function show(User $user): Response
     {
@@ -58,11 +63,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
-     */
-    public function edit(Request $request, User $user): Response
-    {
+        
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
@@ -77,6 +78,16 @@ class UserController extends AbstractController
         return $this->render('user/edit.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="user_show", methods={"GET"})
+     */
+    public function show(User $user): Response
+    {
+        return $this->render('user/index.html.twig', [
+            'user' => $user,
         ]);
     }
 

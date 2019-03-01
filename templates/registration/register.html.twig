@@ -34,8 +34,18 @@
                     "minlength": 1,
                     "maxlength": 20
                 },
+                "contact[surname]": {
+                    "required": true,
+                    "minlength": 4,
+                    "maxlength": 50
+                },
+                "contact[email]": {
+                    "email": true,
+                    "maxlength": 50
+                },
             }
         })
     });
 </script>
+
 {% endblock %}

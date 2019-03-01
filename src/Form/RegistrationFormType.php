@@ -40,17 +40,14 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('firstname', TextType::class)
-            ->add('birthdate', BirthdayType::class, array(
+            // ->add('firstname', TextType::class)
+            // ->add('language', LanguageType::class)
+            // ->add('nationality', CountryType::class)
+            ->add('photo', FileType::class)
+            ->add('birthdate', BirthdayType::class, [
                 'widget' => 'choice',
                 'years'  => range(date('Y')-100, date('Y')-19),
-           ))
-            ->add('language', LanguageType::class)
-            ->add('nationality', CountryType::class)
-            ->add('photo', FileType::class,[
-
-                'required' => false,
-            ])
+                ])
             ->add('gender', ChoiceType::class, [
                 'choices' => [
                     'Female' => 1,
@@ -73,9 +70,7 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
-            ])
-            
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

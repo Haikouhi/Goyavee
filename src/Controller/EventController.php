@@ -21,9 +21,11 @@ class EventController extends AbstractController
      */
     public function index(EventRepository $eventRepository): Response
     {
+        //dump($eventRepository->findAll()); die;
         
-        $events = $eventRepository->findAll();
-
+        if ($this->getUser()) {
+            return $this->render('home/indexauth.html.twig');    
+        }
         return $this->render('event/index.html.twig', [
             'events' => $events,
         ]);

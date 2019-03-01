@@ -17,6 +17,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
+use Doctrine\ORM\Query\AST\Functions\CurrentDateFunction;
+use Symfony\Component\Intl\Data\Generator\CurrencyDataGenerator;
 
 class EventType extends AbstractType
 {
@@ -30,7 +32,7 @@ class EventType extends AbstractType
             ->add('date_end', DateType::class)
             ->add('photo', FileType::class, [
                 'mapped' => false,
-                'label' => 'Ajouter une photo'
+                'label' => 'Ajouter une photo',
             ])
             ->add('description', TextareaType::class)
             ->add('category', EntityType::class, [

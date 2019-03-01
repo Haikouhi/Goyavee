@@ -44,7 +44,10 @@ class RegistrationFormType extends AbstractType
             ->add('birthdate', BirthdayType::class)
             ->add('language', LanguageType::class)
             ->add('nationality', CountryType::class)
-            ->add('photo', FileType::class)
+            ->add('photo', FileType::class,[
+
+                'required' => false,
+            ])
             ->add('gender', ChoiceType::class, [
                 'choices' => [
                     'Female' => 1,

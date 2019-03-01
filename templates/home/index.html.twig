@@ -1,0 +1,227 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home | Goyavee!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+
+<header class="container-fluid banner px-0 position-relative pb-3 pb-lg-5">
+    <div class="container">
+        <div class="catchphrase text-center row">
+            <div class="col-12">
+                <h1>Making new friends in old places</h1>
+                <p></p>
+            </div>
+        </div>
+        <form class="search row mx-0">
+            <fieldset class="col-12 col-lg-9 p-2">
+                <div class="row">
+                    <div class="col-12 col-md-7 mb-3 mb-md-0">
+                        <input placeholder="Where ?" type="text" class="pin w-100">
+                    </div>
+                    <div class="col-12 col-md-5">
+                        <input placeholder="When ?" type="text" class="datepicker w-100">
+                    </div>
+                </div>
+            </fieldset>
+            <input type="submit" class="col-12 col-lg-3" value="Show me the way !" />
+        </form>
+    </div>
+</header>
+<main class="container-fluid px-0 position-relative">
+    <div class="container pt-3">
+        <div class="row">
+            <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-center ">
+                <div class="card cards">
+                    <div class="card-body">
+                        <h5 class="card-title">What to do?</h5>
+                        <p class="card-text pb-4">Have some time to spare in your day? Sign in to see all the
+                            awesome
+                            activities that are happening around you.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-center">
+                <div class="card cards">
+                    <div class="card-body">
+                        <h5 class="card-title">Where to go ?</h5>
+                        <p class="card-text pb-5">Use our interactive map to see what the city you’re in has to
+                            offer!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-center">
+                <div class="card cards">
+                    <div class="card-body">
+                        <h5 class="card-title">When ?</h5>
+                        <p class="card-text pb-1">Have a specific date in mind? Use our built-in calendar to
+                            organise your trip, there’s always something fun happening!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-center">
+                <div class="card cards">
+                    <div class="card-body">
+                        <h5 class="card-title">With Whom ? </h5>
+                        <p class="card-text pb-2">Do you like taking in the culture and making new friends along
+                            the way? Then you’re gonna love Goyavee! </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <section>
+            <div class="row">
+                <div class="col-12 pb-1">
+                    <h2>Museums</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
+                    <article class="activity-card">
+                        <img class="card-img-top" src="{{asset('dist/images/map.jpeg') }}" alt="image_activity">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the
+                                bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary btn-orange">Go somewhere</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
+                    <article class="activity-card">
+                        <img class="card-img-top" src="{{asset('dist/images/map.jpeg') }}" alt="image_activity">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the
+                                bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary btn-orange">Go somewhere</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
+                    <article class="activity-card">
+                        <img class="card-img-top" src="{{asset('dist/images/map.jpeg') }}" alt="image_activity">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the
+                                bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary btn-orange">Go somewhere</a>
+                        </div>
+                    </article>
+                </div>
+                <hr>
+            </div>
+            <div class="row">
+                <div class="col-12 pt-3 pb-1">
+                    <h2>Concerts</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
+                    <article class="activity-card">
+                        <img class="card-img-top" src="{{asset('dist/images/map.jpeg') }}" alt="image_activity">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the
+                                bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary btn-orange">Go somewhere</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
+                    <article class="activity-card">
+                        <img class="card-img-top" src="{{asset('dist/images/map.jpeg') }}" alt="image_activity">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the
+                                bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary btn-orange">Go somewhere</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
+                    <article class="activity-card">
+                        <img class="card-img-top" src="{{asset('dist/images/map.jpeg') }}" alt="image_activity">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the
+                                bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary btn-orange">Go somewhere</a>
+                        </div>
+                    </article>
+                </div>
+                <hr>
+            </div>
+            <div class="row">
+                <div class="col-12 pt-3 pb-1">
+                    <h2>Outdoor</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
+                    <article class="activity-card">
+                        <img class="card-img-top" src="{{asset('dist/images/map.jpeg') }}" alt="image_activity">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the
+                                bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary btn-orange">Go somewhere</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
+                    <article class="activity-card">
+                        <img class="card-img-top" src="{{asset('dist/images/map.jpeg') }}" alt="image_activity">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the
+                                bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary btn-orange">Go somewhere</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
+                    <article class="activity-card">
+                        <img class="card-img-top" src="{{asset('dist/images/map.jpeg') }}" alt="image_activity">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the
+                                bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary btn-orange">Go somewhere</a>
+                        </div>
+                    </article>
+                </div>
+                <hr>
+            </div>
+        </section>
+        <section>
+            <div class="row justify-content-center align-items-center m-0">
+                <div class="col-12 col-md-4 newsletter d-flex align-items-center justify-content-center mb-2">
+                    <form class="d-flex justify-content-center flex-column">
+                        <label class="text-center">Sign up and stay up to date to all of our new features and
+                            upcoming
+                            events. <br>
+                        </label>
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" placeholder="E-mail" aria-label="E-mail"
+                                aria-describedby="buttonAddOnOne">
+                            <div class="input-group-append">
+                                <button class="btn btn-orange" type="button" id="buttonAddOnOne">Subscribe</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-12 col-md-7 mapbox-home m-0 mb-3">
+                    <div id="macarte" class="map-blur m-0"></div>
+                    <button id="btn-geo" onclick="getLocation()" class="btn btn-orange geobutton">Find me</button>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+{% endblock %}

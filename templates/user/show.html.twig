@@ -4,7 +4,7 @@
 
 {% block body %}
 
-{# {% for user in users %} #}
+
 <main class="container-fluid position-relative">
     <!-- sidebar profile -->
     <div class="row">
@@ -15,7 +15,7 @@
             </div>
             <p class="text-center">Hi {{ user.nickname }}</p>
             <p class="text-center"><a href="{{ path('user_edit', {'id': user.id}) }}">Modify Profile</a></p>
-            {# Lien à modifier : profil public #}
+            
             <p class="text-center"><a href="public_profil.html">Public Profile</a></p>
 
             <div class="d-flex justify-content-center">
@@ -187,7 +187,7 @@
             </div>
         </div>
 </main>
-{# {% endfor %} #}
+
 
 
 

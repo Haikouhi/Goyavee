@@ -9,14 +9,14 @@
         <nav class="menucontent position-fixed">
             <ul class="py-2">
                 <li class="px-3 py-2">
-                    <a href="{{ path('user_edit', {'id': app.user.id}) }}">Modifier le profil</a>
+                    <a href="{{ path('user_edit', {'id': app.user.id}) }}">Update my profile</a>
                 </li>
                 <li class="px-3 py-2">
-                    <a href="#">Invitez des amis</a>
+                    <a href="#">Invite some friends</a>
                 </li>
                 
                 <li class="px-3 py-2">
-                    <a href="{{ path('logout') }}">Deconnexion</a>
+                    <a href="{{ path('logout') }}">Log out</a>
                 </li>
             </ul>
         </nav>
@@ -35,7 +35,7 @@
             <a class="nav-link" href="#">Messages</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ path('user_index') }}">Profil</a>
+            <a class="nav-link" href="{{ path('user_index') }}">Profile</a>
            
         </li>
         <div class="d-none d-md-block nav-picture" id="profile_pic_desktop">

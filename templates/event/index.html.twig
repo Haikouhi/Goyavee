@@ -4,47 +4,6 @@
 
 {% block body %}
 
-<main class="container position-relative ">
-        <div class="row">
-            <div class="col-12 col-md-3 d-flex justify-content-center justify-content-md-start">
-                <a href="{{ path('event_new') }}" class="btn btn-orange mt-2 mb-4"> Create an event</a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 col-lg-7">
-                    {# {% for event in events %} #}
-                <div class="card mb-3" style="max-width: 700px;">
-                    <div class="row no-gutters">
-                        <div class="col-md-4">
-                            <img src="{{asset('dist/images/map.jpeg') }}" class="card-img" alt="image_event">
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card-body event-informations">
-                                <h5 class="card-title">Activity Name</h5>
-                                <p class="card-text">Heure / Date</p>
-                                <p class="card-text">Adresse</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card-body event-informations">
-                                <p class="card-text"><small class="text-muted">Lorem ipsum dolor, sit amet consectetur
-                                        adipisicing elit. Culpa sed ducimus molestias. Ex, ab illum vitae, et non enim
-                                        dolore.</small></p>
-                                <p class="card-text"><small class="text-muted">Nb pax inscrit / Nb pax prévu</small></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {# {% endfor %} #}
-
-            </div>
-            <div class="col-12 col-lg-5 mapbox m-0 mb-3">
-                <div id="mapevent"></div>
-            </div>
-        </div>
-    </main>
-
-
     {# <h1>Event index</h1>
 
     <table class="table">

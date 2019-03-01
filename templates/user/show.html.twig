@@ -3,15 +3,14 @@
 {% block title %}Profile | Goyavee!{% endblock %}
 
 {% block body %}
-{{ include('navbar-private.html.twig') }}
-{{ include('search-bar-mobile.html.twig') }}
 
+{# {% for user in users %} #}
 <main class="container-fluid position-relative">
     <!-- sidebar profile -->
     <div class="row">
         <div class="col-sm-12 col-md-4 col-lg-3">
             <div class="d-flex justify-content-center">
-                <img src="{{asset('dist/images/profile-picture.jpg') }}" class="profile_picture" alt="profile_picture">
+                <img src="{{ user.photo }}" class="profile_picture" alt="profile_picture">
                 {# {{ user.photo }} à voir comment l'afficher #}
             </div>
             <p class="text-center">Hi {{ user.nickname }}</p>
@@ -42,10 +41,10 @@
             <hr class="hr-private-profile">
             <div>
                 <p class="text-center">Quick informations about you</p>
-                <p class="text-center">Firstname : {{ user.firstname }}</p>
-                <p class="text-center">Email : {{ user.email }}</p>
-                <p class="text-center">Birthdate : {{ user.birthdate ? user.birthdate|date('Y-m-d') : '' }}</p>
-                <p class="text-center">Nationality : {{ user.nationality }}</p>
+                <p class="text-center">{{ user.firstname }}</p>
+                <p class="text-center">{{ user.email }}</p>
+                <p class="text-center">{{ user.birthdate ? user.birthdate|date('Y-m-d') : '' }}</p>
+                <p class="text-center"> {{ user.nationality }}</p>
 
                 <p class="text-center"><a href="public_profil.html">Public Profile</p>
             </div>
@@ -188,6 +187,7 @@
             </div>
         </div>
 </main>
+{# {% endfor %} #}
 
 
 

@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/user")
@@ -16,12 +17,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     /**
+     * Affichage de mon profil privé (edit)
+     * @IsGranted("ROLE_USER")
      * @Route("/", name="user_index", methods={"GET"})
      */
     public function index(UserRepository $userRepository): Response
     {
-        return $this->render('user/index.html.twig', [
-            'users' => $userRepository->findAll(),
+        return $this->render('user/show.html.twig', [
+            'user' => $this->getUser(),
         ]);
     }
 
@@ -53,16 +56,19 @@ class UserController extends AbstractController
      */
     public function show(User $user): Response
     {
-        return $this->render('user/show.html.twig', [
+        return $this->render('user/index.html.twig', [
             'user' => $user,
         ]);
     }
 
     /**
-     * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
+     * @Route("/edit", name="user_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, User $user): Response
+    public function edit(Request $request): Response
     {
+        $user = $this->getUser();
+
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 

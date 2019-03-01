@@ -23,6 +23,13 @@ html5shiv.js"></script> <![endif]-->
 
 <body>
 
+    {% if app.user %}
+        {{ include('navbar-private.html.twig') }} 
+        {{ include('search-bar-mobile.html.twig') }}
+
+    {% else %}
+        {{ include('navbar-public.html.twig') }}
+    {% endif %}
     {% block body %}{% endblock %}
 
     <footer class="container-fluid position-relative">

@@ -44,9 +44,10 @@ class RegistrationFormType extends AbstractType
             // ->add('language', LanguageType::class)
             // ->add('nationality', CountryType::class)
             ->add('photo', FileType::class)
-            ->add('birthdate', BirthdayType::class, array(
+            ->add('birthdate', BirthdayType::class, [
                 'widget' => 'choice',
                 'years'  => range(date('Y')-100, date('Y')-19),
+                ])
             ->add('gender', ChoiceType::class, [
                 'choices' => [
                     "Rather not say" => 3,
@@ -69,9 +70,7 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
-            ])
-            
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

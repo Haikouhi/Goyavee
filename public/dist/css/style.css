@@ -151,6 +151,12 @@ input[type="submit"]{
     height: auto;
 }
 
+/* signup */
+legend .col-form-label{
+    padding : 0px !important;
+
+}
+
 /* Modal : btn social media */
 .btn-facebook {
     color: #fff;
@@ -684,7 +690,7 @@ width: 80%;
     }
     .modal-logo-guava{
         height : 10%;
-        width : 25%;
+        width : 15%;
        }
     main{
         top : 90px;

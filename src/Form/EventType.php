@@ -17,17 +17,16 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class EventType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
-        // TODO: Terminer de typer les datas et résoudre le problème concernant les id_location et organizer
         $builder
             ->add('name', TextType::class)
-            ->add('date_start', DateType::class)
-            ->add('date_end', DateType::class)
+            ->add('date_start', DateTimeType::class)
+            ->add('date_end', DateTimeType::class)
             ->add('photo', FileType::class, [
                 'mapped' => false,
                 'label' => 'Ajouter une photo'
@@ -39,30 +38,10 @@ class EventType extends AbstractType
             ]) 
             ->add('location', EntityType::class, [
                 'class' => Location::class,
-                'choice_label' => 'name'
+                'choice_label' => 'name',
+                'required'   => false,
+                
             ]);
-            // ->add('organizer', EntityType::class, [
-            //     'class' => User::class,
-            //     'choice_label' => 'nickname'
-            // ]);
-
-
-
-
-
-
-            // ->add(
-            //     $builder->create('location', FormType::class, ['by_reference' => false])
-            //     ->add('street_name', TextType::class)
-            //     ->add('street_number', IntegerType::class)
-            //     ->add('city', TextType::class)
-            //     ->add('zip', IntegerType::class)
-            //     ->add('country', CountryType::class)
-            //     ->add('longitude')
-            //     ->add('latitude'), EntityType::class, [
-            //         'class' => Location::class,
-            //     ])
-            // ->add('created_at')
         
             }
 

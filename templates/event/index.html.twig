@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Event index{% endblock %}
+{% block title %}Create event | Goyavee!{% endblock %}
 
 {% block body %}
-    <h1>Event index</h1>
+
+    {# <h1>Event index</h1>
 
     <table class="table">
         <thead>
@@ -26,8 +27,8 @@
             <tr>
                 <td>{{ event.id }}</td>
                 <td>{{ event.name }}</td>
-                <td>{{ event.dateStart ? event.dateStart|date('Y-m-d') : '' }}</td>
-                <td>{{ event.dateEnd ? event.dateEnd|date('Y-m-d') : '' }}</td>
+                <td>{{ event.dateStart ? event.dateStart|date('Y-m-d H:i') : '' }}</td>
+                <td>{{ event.dateEnd ? event.dateEnd|date('Y-m-d H:i') : '' }}</td>
                 <td>{{ event.photo }}</td>
                 <td>{{ event.category.name }}</td>
                 <td>{{ event.createdAt ? event.createdAt|date('Y-m-d H:i:s') : '' }}</td>
@@ -45,7 +46,7 @@
             </tr>
         {% endfor %}
         </tbody>
-    </table>
+    </table> #}
 
-    <a href="{{ path('event_new') }}">Create new</a>
+    {# <a href="{{ path('event_new') }}">Create new</a> #}
 {% endblock %}

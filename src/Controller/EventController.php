@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Event;
+use App\Entity\Comment;
 use App\Entity\Location;
 use App\Form\EventType;
 use App\Repository\EventRepository;
@@ -10,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Form\CommentType;
 
 /**
  * @Route("/event")
@@ -19,9 +21,14 @@ class EventController extends AbstractController
     /**
      * @Route("/", name="event_index", methods={"GET"})
      */
+    
     public function index(EventRepository $eventRepository): Response
     {
         //dump($eventRepository->findAll()); die;
+        
+        if ($this->getUser()) {
+            return $this->render('home/indexauth.html.twig');    
+        }
         return $this->render('event/index.html.twig', [
             'events' => $eventRepository->findAll(),
         ]);
@@ -33,55 +40,19 @@ class EventController extends AbstractController
     public function new(Request $request): Response
     {
 
-      
-
-        // dump($request->request); die;
-        // dump($_POST[location[street_name]]); die;
-
-        // if (!$location) {
-
-        //     $location = new Location();
-        //     $location->setStreetName('Rue Flantier');
-        //     $location->setZip(56000);
-        //     $location->setCity('Lyon');
-        //     $location->setCountry('France');
-        //     $location->setLongitude(45.454);
-        //     $location->setLatitude(45.454);
-
-        //     // dump($location); die;
-    
-        //     $entityManager = $this->getDoctrine()->getManager();
-        //     $entityManager->persist($location);
-        //     $entityManager->flush();
-
-            
-
-        // }
-      
-        
-            // dump($location); die;
-            
-
         $event = new Event();
         $form = $this->createForm(EventType::class, $event);
-         //retieve the id of the current user
 
-         $actualUser = $this->getUser();
+        //retieve the id of the current user
+        $actualUser = $this->getUser();
+        //set the organizer with the current user
+        $event->setOrganizer($actualUser);
 
-         //set the organizer with the current user
- 
-         $event->setOrganizer($actualUser);
- 
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
 
-            // echo "<pre>";
-            // var_dump($this->getUser()->getId());
-            // var_dump($request->request->get('event')['organizer']);
-            // var_dump($request); die;
 
-        /********************************* ************************************/
+        /**********************************************************************/
 
             //retrive the file send in the request
             $file = $request->files->get('event')['photo'];
@@ -103,10 +74,6 @@ class EventController extends AbstractController
 
         /**********************************************************************/    
 
-
-       
-        
-
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($event);
             $entityManager->flush();
@@ -121,12 +88,37 @@ class EventController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="event_show", methods={"GET"})
+     * @Route("/{id}", name="event_show", methods={"GET", "POST"})
      */
-    public function show(Event $event): Response
+    public function show(Request $request, Event $event): Response
     {
+        $comment = new Comment();
+        $commentForm = $this->createForm(CommentType::class, $comment);
+
+
+        //retieve the id of the current user
+        $actualUser = $this->getUser();
+        
+        
+        // dump($actualUser); die;
+        //set the organizer with the current user
+        $comment->setUser($actualUser);
+        
+
+        $commentForm->handleRequest($request);
+
+        if ($commentForm->isSubmitted() && $commentForm->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($comment);
+            $entityManager->flush();
+
+        }
+
+        // dump($event); dump($commentForm); die;
+
         return $this->render('event/show.html.twig', [
             'event' => $event,
+            'commentForm' => $commentForm->createView(),
         ]);
     }
 

@@ -50,3 +50,70 @@
 
     {# <a href="{{ path('event_new') }}">Create new</a> #}
 {% endblock %}
+
+
+
+
+{% block javascripts %}
+<script>
+
+    /*Affichage carte*/
+    var carte = L.map('macarte').setView([46.3630104, 2.9846608], 5);
+
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(carte);
+
+
+    /*Géolocalisation*/
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+
+        } else { 
+            alert('La géolocalisation n\'est pas fonctionnelle.');
+        }
+    }
+
+    /*Marqueur et zoom*/
+
+    function showPosition(position) {
+
+        var marker = L.marker([position.coords.latitude, position.coords.longitude]);
+        marker.addTo(carte);
+
+        carte.setZoom(16).panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
+
+        coords = position.coords;
+        // geoloc = navigator.geolocation;
+        // console.log(geoloc);
+
+        /*carte.setZoom(16);*/
+    }
+
+    $(function(){
+
+        $("tr[data-event-id]").each(function() {
+            var markerEvent = L.marker([ $(this).data('event-location-latitude'), $(this).data('event-location-longitude') ]);
+            markerEvent.addTo(carte);
+        });
+
+    });
+
+
+    var main = document.getElementById(($this).data('event-id'));
+        popup = document.getElementById('popup');
+        main.addEventListener('mouseleave', function(){
+    popup.style.display = 'block';
+});
+        main.addEventListener('mouseenter', function(){
+        popup.style.display = 'none'
+    });
+    
+
+</script>
+
+{% endblock %}
+
+

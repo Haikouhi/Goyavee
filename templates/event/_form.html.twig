@@ -1,85 +1,17 @@
-{% block body %}
+{{ form_start(form) }}
 
-<main class="container position-relative">
-    <div class="card mt-2 mb-5">
-        <div class="d-flex justify-content-center mt-3 mb-3">
-            <img src="{{ asset('dist/images/friends.jpeg') }}" class="card-img-top" alt="image_creating_event">
-        </div>
-        <h5 class="text-center card-title">Create an event</h5>
-        <div class="card-body">
+    
+    {{ form_row(form.name) }}
+    {{ form_row(form.date_start) }}
+    {{ form_row(form.date_end) }}
+    {{ form_row(form.photo) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.category) }}
+    {{ form_row(form.location) }}
+    
+    
+    <button class="btn">{{ button_label|default('Save') }}</button>
 
-            {{ form_start(form) }}
-
-            <div class="form-row justify-content-center">
-                <div class="form-group col-12 col-md-6">
-                    {{ form_label(form.name, 'Event Name') }}
-                    {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
-                    {{ form_row(form.name) }}
-                </div>
-                <div class="form-group col-12 col-md-6">
-                    {{ form_label(form.category, 'Type of event') }}
-                    {{ form_widget(form.category, {'attr': {'class': 'form-control'}}) }}
-                    {{ form_row(form.category) }}
-                </div>
-            </div>
-            <div class="form-row d-flex align-items-center">
-                <div class="form-group col-lg-6 my-0">
-                    {{ form_label(form.location, 'Location') }}
-                    {{ form_widget(form.location, {'attr': {'class': 'form-control'}}) }}
-                    {{ form_row(form.location) }}
-                </div>
-                <div class="form-group col-6 col-lg-3 my-0">
-                    {{ form_label(form.date_start, 'Start date') }}
-                    {{ form_widget(form.date_start, {'attr': {'class': ''}}) }}
-                    {{ form_row(form.date_start) }}
-                </div>
-                <div class="form-group col-6 col-lg-3 my-0">
-                    {{ form_label(form.date_end, 'End date') }}
-                    {{ form_widget(form.date_end, {'attr': {'class': ''}}) }}
-                    {{ form_row(form.date_end) }}
-                </div>
-            </div>
-            
-            <div class="mt-3 mb-4 d-flex align-items-center">
-                <a class="btn btn-orange mr-3 text-light" id="btn-add-location"> Add your location</a>
-                <p class="card-text">Did not find your location ? Let's add you're own!</p>
-            </div>
-            
-            <div class="creating-location mb-4">
-                <div class="align-items-center">
-                    <input id="locationAutocomplete" placeholder="Address" class="m-2" type="text" />
-                    <input id="locationName" type="text" class="m-2" placeholder="Name of the place">
-                    <button onclick="createLocation()" class="btn btn-orange m-3 p-3 col-12 col-md-2">Add a new place</button>
-                </div>
-            </div>
-
-            <div class="form-group">
-                {{ form_label(form.description, 'Description') }}
-                {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
-                {{ form_row(form.description) }}
-            </div>
-
-            <div class="d-flex justify-content-center">
-                <div class="form-group col-md-4 col-lg-3 custom-file px-0">
-                    {{ form_label(form.photo, 'Choose your event\'s
-                    image :') }}
-                    {{ form_widget(form.photo, {'attr': {'class': 'custom-file-input'}}) }}
-                    {{ form_row(form.photo) }}
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12 mt-5 mb-2">
-                    <a href="{{ path('event_index') }}" class="btn btn-lg btn-blue">Back</a>
-                    <button class="btn btn-lg btn-orange float-right">{{ button_label|default('Save') }}</button>
-                </div>
-            </div>
-
-            {{ form_end(form) }}
+{{ form_end(form) }}
 
 
-        </div>
-    </div>
-</main>
-
-{% endblock %}

@@ -1,122 +1,40 @@
 {% extends 'base.html.twig' %}
-{% block title %}Sign up | Goyavee!{% endblock %}
+
+{% block title %}Register{% endblock %}
 
 {% block body %}
+    <h1>Register</h1>
 
-<main class="container position-relative">
-    <div class="card mt-2 mb-5">
-        <div class="d-flex justify-content-center mt-3 mb-3">
-            <img src="{{ asset('dist/images/logos/Goyavee.png') }}" class="modal-logo-guava" alt="logo">
-        </div>
-        <h5 class="text-center card-title">Sign up to see more...</h5>
-        <div class="card-body">
-            {{ form_start(registrationForm) }}
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.nickname) }}
+        {{ form_row(registrationForm.firstname) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword) }} 
+        {{ form_row(registrationForm.birthdate) }}
+        {{ form_row(registrationForm.language) }}
+        {{ form_row(registrationForm.nationality) }}
+        {{ form_row(registrationForm.photo) }}
+        {{ form_row(registrationForm.gender) }}
+    
+        
+        
 
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    {{ form_label(registrationForm.email, 'Email') }}
-                    {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
-                    {{ form_row(registrationForm.email) }}
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                </div>
-
-                <div class="form-group col-md-3">
-                    {{ form_label(registrationForm.nickname, 'User Name') }}
-                    {{ form_widget(registrationForm.nickname, {'attr': {'class': 'form-control'}}) }}
-                    {{ form_row(registrationForm.nickname) }}
-                </div>
-                <div class="form-group col-md-3">
-                    {{ form_label(registrationForm.birthdate, 'Birthdate') }}
-                    {{ form_widget(registrationForm.birthdate, {'attr': {'class': ''}}) }}
-                    {{ form_row(registrationForm.birthdate) }}
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    {{ form_label(registrationForm.plainPassword, 'Password') }}
-                    {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control'}}) }}
-                    {{ form_row(registrationForm.plainPassword) }}
-                </div>
-
-                <div class="form-group col-md-6">
-                    <label for="confirmPasswordInput">Confirm Password</label>
-                    <input type="password" class="form-control" id="confirmPasswordInput" required>
-                </div> 
-            </div>
-            <div class="form-row">          
-                <div class="form-group custom-control col-12 col-lg-6">
-                    {{ form_row(registrationForm.gender) }}
-                </div>
-                <div class="form-group col-md-12 col-lg-6 custom-file justify-content-center">
-                    {{ form_label(registrationForm.photo, 'Choose your profile picture') }}
-                    {{ form_widget(registrationForm.photo, {'attr': {'class': 'custom-file-input'}}) }}
-                    {{ form_row(registrationForm.photo) }}
-                    <small class="form-text text-muted mb-4">Put up your mean mug !</small>
-                </div>
-            </div>
-
-            <div class="d-flex justify-content-center mt-5 mb-5">
-                <button class="btn btn-secondary btn-orange">Sign Up</button>
-            </div>
-
-            {{ form_end(registrationForm) }}
-
-            <div class="justify-content-center">
-                <p class="text-center">Or sign in through social media</p>
-            </div>
-            <div class="justify-content-center">
-                <div class="row d-flex justify-content-center ">
-                    <div class="col-12 col-lg-7 d-flex justify-content-center mb-2">
-                        <a href="#" class="btn btn-block btn-social btn-facebook">
-                            <i class="fab fa-facebook-f pl-3 pr-3 pl-md-0 pr-md-2 pl-lg-3 pr-lg-3"></i>Sign in with
-                            Facebook
-                        </a>
-                    </div>
-                </div>
-                <div class="row d-flex justify-content-center ">
-                    <div class="col-12 col-lg-7 d-flex justify-content-center mb-2">
-                        <a href="#" class="btn btn-block btn-social btn-google">
-                            <i class="fab fa-google pr-3"></i>Sign in with Google
-                        </a>
-                    </div>
-                </div>
-                <div class="row d-flex justify-content-center mb-2">
-                    <div class="col-12 col-lg-7  d-flex justify-content-center">
-                        <a href="#" class="btn btn-block btn-social btn-twitter">
-                            <i class="fab fa-twitter pr-3"></i>Sign in with Twitter
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-</main>
-
-
-{# {{ form_row(registrationForm.nickname) }}
-{{ form_row(registrationForm.firstname) }}
-{{ form_row(registrationForm.email) }}
-{{ form_row(registrationForm.plainPassword) }}
-{{ form_row(registrationForm.birthdate) }}
-{{ form_row(registrationForm.language) }}
-{{ form_row(registrationForm.nationality) }}
-{{ form_row(registrationForm.photo) }}
-{{ form_row(registrationForm.gender) }} #}
-
-
+        <button class="btn">Register</button>
+    {{ form_end(registrationForm) }}
 {% endblock %}
 
 {% block javascripts %}
 <script>
-    $(function () {
-
+    $(function() {
+    
         $("[name='registrationForm']").validate({
             rules: {
-                "registration_form[nickname]": {
+                "registration_form[nickname]":{
                     "required": true,
                     "minlength": 8,
                     "maxlength": 20
                 },
-                "contact[surname]": {
+                "contact[surname]":{
                     "required": true,
                     "minlength": 4,
                     "maxlength": 50
@@ -125,9 +43,36 @@
                     "email": true,
                     "maxlength": 50
                 },
+                "contact[phone]": {
+                    "required": true
+                },
+                "contact[message]": {
+                    "required": true
+                },
+                
             }
         })
     });
+
+    jQuery.extend(jQuery.validator.messages, {
+        required: "votre message",
+        remote: "votre message",
+        email: "votre message",
+        url: "votre message",
+        date: "votre message",
+        dateISO: "votre message",
+        number: "votre message",
+        digits: "votre message",
+        creditcard: "votre message",
+        equalTo: "votre message",
+        accept: "votre message",
+        maxlength: jQuery.validator.format("votre message {0} caractéres."),
+        minlength: jQuery.validator.format("votre message {0} caractéres."),
+        rangelength: jQuery.validator.format("votre message  entre {0} et {1} caractéres."),
+        range: jQuery.validator.format("votre message  entre {0} et {1}."),
+        max: jQuery.validator.format("votre message  inférieur ou égal à {0}."),
+        min: jQuery.validator.format("votre message  supérieur ou égal à {0}.")
+        
 </script>
 
-{% endblock %}
+{% endblock %} 

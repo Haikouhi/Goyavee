@@ -9,6 +9,8 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Id_user</th>
+                <th>Id_event</th>
                 <th>Content</th>
                 <th>Created_at</th>
                 <th>actions</th>
@@ -18,6 +20,8 @@
         {% for comment in comments %}
             <tr>
                 <td>{{ comment.id }}</td>
+                <td>{{ comment.idUser }}</td>
+                <td>{{ comment.idEvent }}</td>
                 <td>{{ comment.content }}</td>
                 <td>{{ comment.createdAt ? comment.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>

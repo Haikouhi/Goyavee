@@ -40,16 +40,16 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            // ->add('firstname', TextType::class)
+            ->add('firstname', TextType::class)
             ->add('birthdate', BirthdayType::class)
-            // ->add('language', LanguageType::class)
-            // ->add('nationality', CountryType::class)
+            ->add('language', LanguageType::class)
+            ->add('nationality', CountryType::class)
             ->add('photo', FileType::class)
             ->add('gender', ChoiceType::class, [
                 'choices' => [
-                    "Rather not say" => 3,
                     'Female' => 1,
                     'Male'   => 2,
+                    "Rather not say" => 3,
                 ]
             ])
             ->add('plainPassword', PasswordType::class, [

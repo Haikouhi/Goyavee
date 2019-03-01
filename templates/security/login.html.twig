@@ -1,83 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Sign in | Goyavee!{% endblock %}
+{% block title %}Log in!{% endblock %}
 
 {% block body %}
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
 
-<main class="container position-relative">
-    <div class="card mt-2 mb-5">
-        <div class="d-flex justify-content-center mt-3 mb-3">
-            <img src="{{ asset('dist/images/logos/Goyavee.png') }}" class="modal-logo-guava" alt="logo">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <label for="inputEmail" class="sr-only">Email</label>
+    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
+
+    {#
+        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+        See https://symfony.com/doc/current/security/remember_me.html
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me"> Remember me
+            </label>
         </div>
-        <h5 class="text-center card-title">Sign in</h5>
-        <div class="card-body">
+    #}
 
-
-
-            <form method="post">
-                {% if error %}
-                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                {% endif %}
-
-                <div class="form-group">
-                    <label for="inputEmail" class="sr-only">Email</label>
-                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control"
-                        placeholder="Email" required autofocus>
-                </div>
-                <div class="form-group">
-                    <label for="inputPassword" class="sr-only">Password</label>
-                    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password"
-                        required>
-                </div>
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-                {#
-                Uncomment this section and add a remember_me option below your firewall to activate remember me
-                functionality.
-                See https://symfony.com/doc/current/security/remember_me.html
-
-                <div class="checkbox mb-3">
-                    <label>
-                        <input type="checkbox" name="_remember_me"> Remember me
-                    </label>
-                </div>
-                #}
-
-
-                <div class="d-flex justify-content-center mb-4">
-                    <button class="btn btn-lg btn-orange" type="submit">Sign in</button>
-                </div>
-            </form>
-
-            <div class="justify-content-center">
-                <p class="text-center">Or sign in through social media</p>
-            </div>
-            <div class="justify-content-center">
-                <div class="row d-flex justify-content-center ">
-                    <div class="col-12 col-lg-7 d-flex justify-content-center mb-2">
-                        <a href="#" class="btn btn-block btn-social btn-facebook">
-                            <i class="fab fa-facebook-f pl-3 pr-3 pl-md-0 pr-md-2 pl-lg-3 pr-lg-3"></i>Sign in with
-                            Facebook
-                        </a>
-                    </div>
-                </div>
-                <div class="row d-flex justify-content-center ">
-                    <div class="col-12 col-lg-7 d-flex justify-content-center mb-2">
-                        <a href="#" class="btn btn-block btn-social btn-google">
-                            <i class="fab fa-google pr-3"></i>Sign in with Google
-                        </a>
-                    </div>
-                </div>
-                <div class="row d-flex justify-content-center mb-2">
-                    <div class="col-12 col-lg-7  d-flex justify-content-center">
-                        <a href="#" class="btn btn-block btn-social btn-twitter">
-                            <i class="fab fa-twitter pr-3"></i>Sign in with Twitter
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-</main>
-
+    <button class="btn btn-lg btn-primary" type="submit">
+        Sign in
+    </button>
+</form>
 {% endblock %}

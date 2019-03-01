@@ -1,0 +1,45 @@
+<nav class="navbar justify-content-center justify-content-md-start row px-0 mx-0 w-100">
+    <div class="col-12 col-md-2 d-flex align-items-center">
+        <span class="navbar-brand logo mb-0">
+            <a href="{{ path('home') }}"> <img src="{{ asset('dist/images/logos/LogoGoyavee@0,25x.png') }}" alt="Logo"></a>
+        </span>
+        <div class="d-md-none ml-5 mb-2 nav-picture" id="profile_pic_mobile">
+            <img src="{{ asset('dist/images/groot-icon.png') }}" alt="profile_picture">
+        </div>
+        <nav class="menucontent position-fixed">
+            <ul class="py-2">
+                <li class="px-3 py-2">
+                    <a href="{{ path('user_edit') }}">Update my profile</a>
+                </li>
+                <li class="px-3 py-2">
+                    <a href="#">Invite some friends</a>
+                </li>
+                
+                <li class="px-3 py-2">
+                    <a href="{{ path('logout') }}">Log out</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <nav class="d-none d-lg-block">
+        <form class="form-inline justify-content-center">
+            <input class="form-control mr-sm-2 pin" type="text" placeholder="Where ?" aria-label="Search">
+            <input class="form-control mr-sm-2 datepicker" type="text" placeholder="When ?" aria-label="Search">
+            <button id="nav-input" class="btn btn-sm my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+        </form>
+    </nav>
+
+    <ul class="nav col-12 col-md-7 offset-md-2 col-lg-4 offset-lg-0 offset-xl-1 align-items-center justify-content-center justify-content-md-end">
+        <li class="nav-item">
+            <a class="nav-link" href="#">Messages</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('user_index') }}">Profile</a>
+           
+        </li>
+        <div class="d-none d-md-block nav-picture" id="profile_pic_desktop">
+            <img src="{{ asset('dist/images/groot-icon.png') }}" alt="profile_picture">
+        </div>
+    </ul>
+</nav>

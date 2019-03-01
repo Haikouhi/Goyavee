@@ -19,13 +19,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class UserController extends AbstractController
 {
     /**
-     * 
+     * Affichage de mon profil privé (edit)
+     * @IsGranted("ROLE_USER")
      * @Route("/", name="user_index", methods={"GET"})
      */
     public function index(UserRepository $userRepository): Response
     {
-        return $this->render('user/index.html.twig', [
-            'users' => $userRepository->findAll(),
+        return $this->render('user/show.html.twig', [
+            'user' => $this->getUser(),
         ]);
     }
 
@@ -52,35 +53,27 @@ class UserController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
+    
     /**
      * @IsGranted("ROLE_USER")
-     * @Route("/{id}", name="user_show", methods={"GET"})
+     * @Route("/edit", name="user_edit", methods={"GET","POST"})
      */
-    public function show(User $user): Response
+    public function edit(Request $request): Response
     {
-        return $this->render('user/show.html.twig', [
-            'user' => $user,
-        ]);
-    }
+        $user = $this->getUser();
 
-    /**
-     * @IsGranted("ROLE_USER")
-     * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
-     */
-    public function edit(Request $request, User $user): Response
-    {
+        
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            
             return $this->redirectToRoute('user_index', [
                 'id' => $user->getId(),
-            ]);
-        }
-
+                ]);
+            }
+            
         return $this->render('user/edit.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
@@ -88,7 +81,16 @@ class UserController extends AbstractController
     }
 
     /**
-     * @IsGranted("ROLE_ADMIN")
+     * @Route("/{id}", name="user_show", methods={"GET"})
+     */
+    public function show(User $user): Response
+    {
+        return $this->render('user/index.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
+    /**
      * @Route("/{id}", name="user_delete", methods={"DELETE"})
      */
     public function delete(Request $request, User $user): Response

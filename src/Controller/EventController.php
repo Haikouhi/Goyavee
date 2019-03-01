@@ -30,7 +30,7 @@ class EventController extends AbstractController
             return $this->render('home/indexauth.html.twig');    
         }
         return $this->render('event/index.html.twig', [
-            'events' => $eventRepository->findAll(),
+            'events' => $events,
         ]);
     }
 

@@ -24,7 +24,12 @@
         </thead>
         <tbody>
         {% for event in events %}
-            <tr>
+            <tr
+                data-event-id = '{{ event.id }}'
+                data-event-name = '{{ event.name }}'
+                data-event-location-latitude = '{{ event.location.latitude }}'
+                data-event-location-longitude = '{{ event.location.longitude }}'
+            >
                 <td>{{ event.id }}</td>
                 <td>{{ event.name }}</td>
                 <td>{{ event.dateStart ? event.dateStart|date('Y-m-d H:i') : '' }}</td>

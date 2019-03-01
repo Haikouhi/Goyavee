@@ -17,7 +17,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Doctrine\ORM\Query\AST\Functions\CurrentDateFunction;
+use Symfony\Component\Intl\Data\Generator\CurrencyDataGenerator;
 
 class EventType extends AbstractType
 {
@@ -25,11 +26,21 @@ class EventType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('date_start', DateTimeType::class)
-            ->add('date_end', DateTimeType::class)
+            ->add('date_start', DateType::class, array(
+                 'widget' => 'choice',
+                 'years'  => range(date('Y'), date('Y')+5),
+                 'months' => range(date('m'), date('m')+12),
+                 'days'   => range(date('d'), date('d')+31),
+            ))
+            ->add('date_end', DateType::class, array(
+                'widget' => 'choice',
+                'years'  => range(date('Y'), date('Y')+5),
+                'months' => range(date('m'), date('m')+12),
+                'days'   => range(date('d'), date('d')+31),
+           ))
             ->add('photo', FileType::class, [
                 'mapped' => false,
-                'label' => 'Ajouter une photo'
+                'label' => 'Ajouter une photo',
             ])
             ->add('description', TextareaType::class)
             ->add('category', EntityType::class, [

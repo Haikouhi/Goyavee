@@ -41,10 +41,12 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             // ->add('firstname', TextType::class)
-            ->add('birthdate', BirthdayType::class)
             // ->add('language', LanguageType::class)
             // ->add('nationality', CountryType::class)
             ->add('photo', FileType::class)
+            ->add('birthdate', BirthdayType::class, array(
+                'widget' => 'choice',
+                'years'  => range(date('Y')-100, date('Y')-19),
             ->add('gender', ChoiceType::class, [
                 'choices' => [
                     "Rather not say" => 3,

@@ -1,7 +1,7 @@
 <nav class="navbar justify-content-center justify-content-md-start row px-0 mx-0 w-100">
     <div class="col-12 col-md-2 d-flex align-items-center">
         <span class="navbar-brand logo mb-0">
-            <img src="{{ asset('dist/images/logos/LogoGoyavee@0,25x.png') }}" alt="Logo">
+            <a href="{{ path('home') }}"> <img src="{{ asset('dist/images/logos/LogoGoyavee@0,25x.png') }}" alt="Logo"></a>
         </span>
         <div class="d-md-none ml-5 mb-2 nav-picture" id="profile_pic_mobile">
             <img src="{{ asset('dist/images/groot-icon.png') }}" alt="profile_picture">
@@ -9,7 +9,7 @@
         <nav class="menucontent position-fixed">
             <ul class="py-2">
                 <li class="px-3 py-2">
-                    <a href="{{ path('user_edit', {'id': app.user.id}) }}">Update my profile</a>
+                    <a href="{{ path('user_edit') }}">Update my profile</a>
                 </li>
                 <li class="px-3 py-2">
                     <a href="#">Invite some friends</a>

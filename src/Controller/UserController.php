@@ -50,17 +50,7 @@ class UserController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
-    /**
-     * @Route("/{id}", name="user_show", methods={"GET"})
-     */
-    public function show(User $user): Response
-    {
-        return $this->render('user/index.html.twig', [
-            'user' => $user,
-        ]);
-    }
-
+    
     /**
      * @IsGranted("ROLE_USER")
      * @Route("/edit", name="user_edit", methods={"GET","POST"})
@@ -69,20 +59,31 @@ class UserController extends AbstractController
     {
         $user = $this->getUser();
 
+        
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            
             return $this->redirectToRoute('user_index', [
                 'id' => $user->getId(),
-            ]);
-        }
-
+                ]);
+            }
+            
         return $this->render('user/edit.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="user_show", methods={"GET"})
+     */
+    public function show(User $user): Response
+    {
+        return $this->render('user/index.html.twig', [
+            'user' => $user,
         ]);
     }
 

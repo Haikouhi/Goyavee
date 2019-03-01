@@ -3,7 +3,7 @@
 {% block title %}Profile | Goyavee!{% endblock %}
 
 {% block body %}
-
+{# Private profile #}
 
 <main class="container-fluid position-relative">
     <!-- sidebar profile -->
@@ -14,7 +14,7 @@
                 {# {{ user.photo }} à voir comment l'afficher #}
             </div>
             <p class="text-center">Hi {{ user.nickname }}</p>
-            <p class="text-center"><a href="{{ path('user_edit', {'id': user.id}) }}">Modify Profile</a></p>
+            <p class="text-center"><a href="{{ path('user_edit')}}">Modify Profile</a></p>
             
             <p class="text-center"><a href="public_profil.html">Public Profile</a></p>
 

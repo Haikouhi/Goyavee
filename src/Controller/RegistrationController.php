@@ -28,6 +28,13 @@ class RegistrationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
+            $userMail = $user->getEmail();
+            // dump($userMail); die;
+            if ($userMail == "barthelemy@goyavee.com" || $userMail == "thomas@goyavee.com" || $userMail == "caroline@goyavee.com" || $userMail == "haikouhi@goyavee.com"  ) {
+
+                $user->setRoles(['ROLE_ADMIN']);
+            }
+
             $user->setPassword(
                 $passwordEncoder->encodePassword(
                     $user,

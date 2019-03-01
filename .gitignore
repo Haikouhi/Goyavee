@@ -218,4 +218,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# .env.local
+.env.local
+
 # End of https://www.gitignore.io/api/git,osx,symfony,windows,phpstorm,visualstudiocode

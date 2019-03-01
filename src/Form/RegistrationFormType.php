@@ -31,7 +31,7 @@ class RegistrationFormType extends AbstractType
                 'constraints' => [
                     
                     new Length([
-                        'min' => 8,
+                        'min' => 1,
                         'minMessage' => 'Your nickname should be at least {{ limit }} characters',
                         // max length allowed by Symfony for security reasons
                         'max' => 20,
@@ -41,10 +41,16 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('firstname', TextType::class)
-            ->add('birthdate', BirthdayType::class)
+            ->add('birthdate', BirthdayType::class, array(
+                'widget' => 'choice',
+                'years'  => range(date('Y')-100, date('Y')-19),
+           ))
             ->add('language', LanguageType::class)
             ->add('nationality', CountryType::class)
-            ->add('photo', FileType::class)
+            ->add('photo', FileType::class,[
+
+                'required' => false,
+            ])
             ->add('gender', ChoiceType::class, [
                 'choices' => [
                     'Female' => 1,

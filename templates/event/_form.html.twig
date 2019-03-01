@@ -1,3 +1,8 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
 {{ form_start(form) }}
 
     
@@ -9,9 +14,34 @@
     {{ form_row(form.category) }}
     {{ form_row(form.location) }}
     
+
     
     <button class="btn">{{ button_label|default('Save') }}</button>
+
+
+    
+    <!-- Caroline ou Haikhoui : tu peux virer les balises block javascript et endblok et couper le bout de 
+    script javascript pour le emttre dans le fichier js général -->
+
+    <!-- il faudra rajouter cette ligne dans le template général après l'appel à jquery dans les script  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+    et cette ligne dans le head avec les autres liens
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" /> -->
+
+
+    {% block javascripts %} 
+    
+    <script>$(document).ready(function() {
+        $('#event_location').select2();
+    });</script>
+    
+    {% endblock %}
 
 {{ form_end(form) }}
 
 
+
+
+
+{% endblock %} 

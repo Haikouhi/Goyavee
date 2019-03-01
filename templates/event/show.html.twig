@@ -1,8 +1,10 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}Event{% endblock %}
 
 {% block body %}
+
     <h1>Event</h1>
 
     <table class="table">
@@ -29,19 +31,19 @@
             </tr>
             <tr>
                 <th>Category</th>
-                <td>{{ event.category }}</td>
+                <td>{{ event.category.name }}</td>
             </tr>
             <tr>
                 <th>Created_at</th>
                 <td>{{ event.createdAt ? event.createdAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>Id_location</th>
-                <td>{{ event.idLocation }}</td>
+                <th>Location</th>
+                <td>{{ event.location.name }}</td>
             </tr>
             <tr>
-                <th>Id_organizer</th>
-                <td>{{ event.idOrganizer }}</td>
+                <th>Organizer</th>
+                <td>{{ event.organizer.nickname }}</td>
             </tr>
             <tr>
                 <th>Description</th>
@@ -55,4 +57,13 @@
     <a href="{{ path('event_edit', {'id': event.id}) }}">edit</a>
 
     {{ include('event/_delete_form.html.twig') }}
+
+    {{ form_start(commentForm) }}
+
+    {{ form_row(commentForm.event) }}
+    {{ form_row(commentForm.content) }}
+    
+    <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(commentForm) }}
+    
 {% endblock %}

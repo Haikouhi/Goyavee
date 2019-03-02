@@ -142,8 +142,8 @@ input[type="submit"]{
 
 /* Modal signin */
 .modal-logo-guava{
- height : 15%;
- width : 35%;
+ height : 100%;
+ width : 150px;
 }
 
 .btn-social {
@@ -689,9 +689,9 @@ width: 80%;
         top: 76px;
     }
     .modal-logo-guava{
-        height : 10%;
-        width : 15%;
-       }
+        height : 100%;
+        width : 180px;
+    }
     main{
         top : 90px;
     }

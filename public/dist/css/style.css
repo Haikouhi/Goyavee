@@ -451,6 +451,10 @@ main{
     -o-border-radius: 10px;
 } 
 
+.creating-location{
+    display: none;
+}
+
 
 .card-title{
     color: #414770;

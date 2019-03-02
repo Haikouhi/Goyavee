@@ -72,10 +72,16 @@ a, label, input, .modal-title {
     font-family: 'Lato', sans-serif;
 }
 
+a:hover{
+    color : #F5BE17;
+    text-decoration: none;
+}
+
 .navbar a:hover{
     color : white;
     text-decoration: none;
 }
+
 
 .banner{
     width:100%;

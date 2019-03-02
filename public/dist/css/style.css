@@ -72,10 +72,16 @@ a, label, input, .modal-title {
     font-family: 'Lato', sans-serif;
 }
 
+a:hover{
+    color : #F5BE17;
+    text-decoration: none;
+}
+
 .navbar a:hover{
     color : white;
     text-decoration: none;
 }
+
 
 .banner{
     width:100%;
@@ -142,8 +148,8 @@ input[type="submit"]{
 
 /* Modal signin */
 .modal-logo-guava{
- height : 15%;
- width : 35%;
+ height : 100%;
+ width : 150px;
 }
 
 .btn-social {
@@ -445,6 +451,10 @@ main{
     -o-border-radius: 10px;
 } 
 
+.creating-location{
+    display: none;
+}
+
 
 .card-title{
     color: #414770;
@@ -689,9 +699,9 @@ width: 80%;
         top: 76px;
     }
     .modal-logo-guava{
-        height : 10%;
-        width : 15%;
-       }
+        height : 100%;
+        width : 180px;
+    }
     main{
         top : 90px;
     }

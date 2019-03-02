@@ -16,20 +16,20 @@
                 <div class="card mb-3" style="max-width: 700px;">
                     <div class="row no-gutters">
                         <div class="col-md-4">
-                            <img src="{{asset('dist/images/map.jpeg') }}" class="card-img" alt="image_event">
+                            <img src="{{ asset('/' ~ event.getPhoto()) }}" class="card-img" alt="image_event">
                         </div>
                         <div class="col-md-4">
                             <div class="card-body event-informations">
                                 <h5 class="card-title">{{event.name}}</h5>
                                 <p class="card-text">{{ event.category.name }}</p>
-                                <p class="card-text">On {{ event.dateStart ? event.dateStart|date('Y-m-d H:i') : '' }}</p>
+                                <p class="card-text">On {{ event.dateStart ? event.dateStart|date('Y/m/d H:i') : '' }}</p>
                                 <p class="card-text">{{ event.location.getCity }}</p>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="card-body event-informations">
-                                <p class="card-text"><small class="text-muted">{{ event.description}}</small></p>
-                                <p class="card-text"><small class="text-muted">Nb pax inscrit / Nb pax prévu</small></p>
+                                <p class="card-text"><small class="text-muted">{{ event.description|length > 100 ? event.description|slice(0, 100) ~ '...' : event.description }}</small></p>
+                                <p class="card-text mb-1"><small class="text-muted">Nb pax inscrit / Nb pax prévu</small></p>
                                 <div class="d-flex justify-content-center">
                                     <a href="{{ path('event_show', {'id': event.id}) }}" class="btn btn-primary btn-orange mt-2 mb-4"> Let's see closer ! </a>
                                 </div>
@@ -135,14 +135,13 @@
             });
             marker.on('mouseout', function (e) {
                 this.closePopup();
-            });;
+            });
+            
 
         carte.setZoom(16).panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
 
         coords = position.coords;
         console.log(coords);
-
-        /*carte.setZoom(16);*/
 
         if (coords !== null){
             var button = document.getElementById('btn-geo');
@@ -161,8 +160,8 @@
         });
     });
 
+
     }
-       
 </script>
 {% endblock %}
 

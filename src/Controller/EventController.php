@@ -59,14 +59,14 @@ class EventController extends AbstractController
             $file = $request->files->get('event')['photo'];
 
             //put the path to the folder that will stock our files in a var
-            $uploads_directory = $this->getParameter('uploads_directory');
+            $uploads_event_directory = $this->getParameter('uploads_event_directory');
 
             //create a var to change the name of the file
             $filename = md5(uniqid()) . '.' . $file->guessExtension();
 
             //move the file into the folder
             $file->move(
-                $uploads_directory,
+                $uploads_event_directory,
                 $filename
             );
 

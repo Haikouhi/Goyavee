@@ -63,7 +63,7 @@ class User implements UserInterface
     private $nationality;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $photo;
 

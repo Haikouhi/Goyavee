@@ -71,10 +71,9 @@
             loc.name = document.getElementById('locationName').value;
             
             console.log(loc);
-            console.log
             $.ajax({
                 type: "POST",
-                url: window.location.origin + 'location/api/new',
+                url: window.location.origin + '/location/api/new',
                 data: loc,
                 success: function(res) {
 

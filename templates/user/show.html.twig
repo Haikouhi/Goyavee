@@ -10,11 +10,11 @@
     <div class="row">
         <div class="col-sm-12 col-md-4 col-lg-3">
             <div class="d-flex justify-content-center">
-                <img src="{{ user.photo }}" class="profile_picture" alt="profile_picture">
-                {# {{ user.photo }} à voir comment l'afficher #}
+                <img src="{{ asset('dist/{{ user.photo }}') }}" class="profile_picture" alt="profile_picture">
             </div>
             <div>
                 <p class="text-center">Hi {{ user.nickname }}</p>
+                {# ajouter condition si profil = rempli -70% : écrit une phrase : you should update your profile asap #}
                 <p class="text-center"><a href="{{ path('user_edit')}}">Modify Profile</a></p>
                 
                 <p class="text-center"><a href="public_profil.html">Public Profile</a></p>
@@ -45,7 +45,10 @@
                 <p class="text-center">{{ user.firstname }}</p>
                 <p class="text-center">{{ user.email }}</p>
                 <p class="text-center">{{ user.birthdate ? user.birthdate|date('Y-m-d') : '' }}</p>
-                <p class="text-center"> {{ user.nationality }}</p>
+                <p class="text-center"> {{ user.nationality }}</p>                
+            </div>
+            <div class="d-flex justify-content-center">
+                <a href="{{ path('event_new') }}" class="btn btn-primary btn-orange mt-2 mb-4"> Create an event</a>
             </div>
         </div>
         <!-- carousels -->

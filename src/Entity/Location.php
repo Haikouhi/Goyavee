@@ -157,6 +157,10 @@ class Location
         return $this;
     }
 
+    public function completeAdress(){
+        return $this->getStreetNumber() . ' ' . $this->getStreetName() . ' (' . $this->getCity() . ')';
+    }
+
     /**
      * @return Collection|Event[]
      */

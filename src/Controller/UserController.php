@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use App\Repository\EventRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,8 +26,11 @@ class UserController extends AbstractController
      */
     public function index(UserRepository $userRepository): Response
     {
+        $events = $this->getUser()->getEvents();
+
         return $this->render('user/show.html.twig', [
             'user' => $this->getUser(),
+            'events' => $events,
         ]);
     }
 

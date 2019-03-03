@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-md-10 col-lg-12">
                 <div class="d-flex justify-content-center">
-                    <img src="{{asset('dist/images/profile-picture.jpg') }}" class="profile_picture" alt="profile_picture">
+                    <img src="{{ asset('/' ~ user.getPhoto()) }}" class="profile_picture" alt="profile_picture">
                 </div>
             </div>
         </div>
@@ -20,14 +20,12 @@
         <div class="row">
             <div class="col-md-10 col-lg-6 offset-lg-3">
                 <div>
-                    <p class="text-center card-title">{{ user.nickname }}</p>
+                    <h4 class="text-center card-title">{{ user.nickname }}</h4>
                     <p class="text-center card-title">Actually, my name is {{ user.firstname }}</p>
                     <p class="text-center card-title">{{ user.birthdate ? user.birthdate|date('Y/m/d') : '' }}</p>
                     <p class="text-center card-title">{{ user.genderForHuman() }}</p>
                     <br>
-                    <p class="text-justify mb-5 card-text">{{ user.description }}
-                    </p>
-                    <p class="text-center card-title">{{ user.email }}</p>
+                    <p class="text-justify mb-5 card-text">{{ user.description }}</p>
                 </div>
             </div>
         </div>
@@ -44,7 +42,7 @@
         <div class="row">
             <div class="col-md-10 col-lg-6 offset-lg-3">
                 <div>
-                    <p class="text-center card-title">{{ user.language }}</p>
+                    <p class="text-center card-title">I speak {{ user.language }}</p>
                 </div>
             </div>
         </div>
@@ -119,19 +117,18 @@
                 <div class="col-12">
                     <h4 class="card-title">Previous Events :</h4>
                     <div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel" data-interval="1000">
-                        <div class="MultiCarousel-inner">
-                                {% for event in events %}
-                                <div class="item">
-                                    <div class="pad15">
-                                        <p class="lead">{{event.name}}</p>
-                                        <div><img src="{{ asset('/' ~ event.getPhoto()) }}" alt="image_event"></div>
-                                        <p class="mt-1">{{event.location.name}}</p>
-                                        <p>{{ event.dateStart ? event.dateStart|date('Y/m/d') : '' }}</p>
+                            <div class="MultiCarousel-inner">
+                                    {% for event in events %}
+                                    <div class="item">
+                                        <div class="pad15">
+                                            <p class="lead">{{event.name}}</p>
+                                            <div><img src="{{ asset('/' ~ event.getPhoto()) }}" alt="image_event"></div>
+                                            <p class="mt-1">{{event.location.name}}</p>
+                                            <p>{{ event.dateStart ? event.dateStart|date('Y/m/d') : '' }}</p>
+                                        </div>
                                     </div>
-                                </div>
-                                {% endfor %}
+                                    {% endfor %}
                             </div>
-                        </div>
                         <button class="btn btn-warning leftLst">
                             <</button> <button class="btn btn-warning rightLst">>
                         </button>

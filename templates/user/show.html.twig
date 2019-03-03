@@ -22,11 +22,43 @@
                 <p class="text-center"><a href="public_profil.html">Public Profile</a></p>
             </div>
             <div class="d-flex justify-content-center">
+                {% if user.rating == 5 %}
+                <span class="fa fa-star rating-checked"></span>
+                <span class="fa fa-star rating-checked"></span>
+                <span class="fa fa-star rating-checked"></span>
+                <span class="fa fa-star rating-checked"></span>
+                <span class="fa fa-star rating-checked"></span>
+                 {% elseif user.rating == 4 %}  
+                 <span class="fa fa-star rating-checked"></span>
                 <span class="fa fa-star rating-checked"></span>
                 <span class="fa fa-star rating-checked"></span>
                 <span class="fa fa-star rating-checked"></span>
                 <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
+                 {% elseif user.rating == 3 %} 
+                 <span class="fa fa-star rating-checked"></span>
+                 <span class="fa fa-star rating-checked"></span>
+                 <span class="fa fa-star rating-checked"></span> 
+                 <span class="fa fa-star"></span>
+                 <span class="fa fa-star"></span>
+                 {% elseif user.rating == 2 %}  
+                 <span class="fa fa-star rating-checked"></span>
+                 <span class="fa fa-star rating-checked"></span> 
+                 <span class="fa fa-star"></span>
+                 <span class="fa fa-star"></span>
+                 <span class="fa fa-star"></span>
+                 {% elseif user.rating == 1 %}
+                 <span class="fa fa-star rating-checked"></span>
+                 <span class="fa fa-star"></span>
+                 <span class="fa fa-star"></span>
+                 <span class="fa fa-star"></span>
+                 <span class="fa fa-star"></span>
+                 {% else %}
+                 <span class="fa fa-star"></span>
+                 <span class="fa fa-star"></span>
+                 <span class="fa fa-star"></span>
+                 <span class="fa fa-star"></span>
+                 <span class="fa fa-star"></span>
+                {% endif %}
             </div>
             <hr class="hr-private-profile">
             <div class="d-flex flex-wrap justify-content-center">

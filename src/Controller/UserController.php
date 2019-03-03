@@ -66,7 +66,6 @@ class UserController extends AbstractController
     {
         $user = $this->getUser();
 
-        
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
         
@@ -77,7 +76,7 @@ class UserController extends AbstractController
                 'id' => $user->getId(),
                 ]);
             }
-            
+        
         return $this->render('user/edit.html.twig', [
             'user' => $user,
             'form' => $form->createView(),

@@ -19,7 +19,7 @@
                 {# ajouter condition si profil = rempli -70% : écrit une phrase : you should update your profile asap #}
                 <p class="text-center"><a href="{{ path('user_edit')}}">Modify Profile</a></p>
                 
-                <p class="text-center"><a href="public_profil.html">Public Profile</a></p>
+                <p class="text-center"><a href="{{ path('user_show', {'id': user.id}) }}">Public Profile</a></p>
             </div>
             <div class="d-flex justify-content-center">
                 {% if user.rating == 5 %}

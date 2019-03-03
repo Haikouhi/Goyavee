@@ -229,6 +229,9 @@ class User implements UserInterface
 
         return $this;
     }
+    public function yearsOld(){
+       $yearOld = $this->getBirthdate();
+    }
 
     public function getLanguage(): ?string
     {
@@ -276,6 +279,18 @@ class User implements UserInterface
         $this->gender = $gender;
 
         return $this;
+    }
+    public function genderForHuman(){
+        if ($this->getGender() == 1) {
+            
+            return "Woman";
+        }
+        elseif ($this->getGender() == 2) {
+           return "Man";
+        }
+        else{
+            return "Rather not tell my gender";
+        }
     }
 
     public function getCreatedAt(): ?\DateTimeInterface

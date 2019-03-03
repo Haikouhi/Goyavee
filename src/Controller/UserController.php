@@ -85,12 +85,17 @@ class UserController extends AbstractController
     }
 
     /**
+     * Affichage du profil public
+     * @IsGranted("ROLE_USER")
      * @Route("/{id}", name="user_show", methods={"GET"})
      */
     public function show(User $user): Response
     {
+        $events = $this->getUser()->getEvents();
+
         return $this->render('user/index.html.twig', [
-            'user' => $user,
+            'user' => $this->getUser(),
+            'events' => $events,
         ]);
     }
 

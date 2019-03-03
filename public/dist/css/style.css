@@ -468,6 +468,10 @@ main{
 .carousel-control-prev, .carousel-control-next {
     filter: invert(100%);
 }
+.image-event img{
+    min-height: 150px;
+    max-height : 200px;
+}
 
 /* Newsletter and map */
 
@@ -809,7 +813,7 @@ Extra large devices (large desktops, 1200px and up) */
         left : 290px;
     }
     .mapbox{
-        height : 780px;
+        height : 823px;
      }
 
  }

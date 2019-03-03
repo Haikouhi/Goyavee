@@ -1,4 +1,102 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn btn-lg btn-orange mt-4 float-right">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+{% block body %}
+
+{% for u in user %}
+<main class="container position-relative">
+    <div class="card mt-5 mb-5">
+        <div class="d-flex justify-content-center">
+            <img src="{{ asset('/' ~ user.getPhoto()) }}" class="profile_picture" alt="profile_picture">
+        </div>
+        <h5 class="text-center card-title">Update my profile</h5>
+        <h6 class="text-center card-title">{{user.email}}</h6>
+        <div class="card-body">
+            <div class="col-md-10 col-lg-6 offset-lg-3 pb-4">
+                <div class="justify-content-center">
+                    <p class="card-title text-center">Tell us more about yourself, your profil is only 25% complete:
+                    </p>
+                    <div class="progress">
+                        <div class="progress-bar bg-warning" style="width:40%"></div>
+                    </div>
+                </div>
+            </div>
+
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <div class="form-row justify-content-center">
+                <label for="ImagesEventInput" class="pr-3 d-flex align-items-center m-0">Update my profile
+                    picture:</label>
+                <div class="form-group col-md-4 col-lg-3 custom-file mr-1 mt-2">
+                    <input type="file" class="custom-file-input" id="ImagesEventInput">
+                    <label class="custom-file-label" for="ImagesEventInput"></label>
+                </div>
+            </div>
+            <div class="form-row mt-5">
+                <div class="form-group col-md-6">
+                    <label for="updatePasswordInput">Password</label>
+                    <input type="password" class="form-control" id="updatePasswordInput" placeholder="Please write your password"
+                        required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="updateConfirmPasswordInput">Confirm Password</label>
+                    <input type="password" class="form-control" id="updateConfirmPasswordInput" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="updateUserNameInput">User name</label>
+                    <input type="text" id="updateUserNameInput" class="form-control" value="{{user.nickname}}">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="updateFirstnameInput">Firstname</label>
+                    <input type="text" class="form-control" id="updateFirstnameInput" value="{{user.firstname}}">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="updateAgeInput">Age</label>
+                    <input type="text" class="form-control" id="updateAgeInput" value="{{ user.birthdate ? user.birthdate|date('Y-m-d') : '' }}">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="updateLanguagesInput">I speak</label>
+                    <input type="text" class="form-control" id="updateLanguagesInput" value="{{user.language}}">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="updateNationality">I am</label>
+                    <input type="text" class="form-control" id="updateNationality" value="{{ user.nationality }}">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="updateAgeInput">I identify as :</label>
+                    <select class="form-control" id="updateLanguagesInput">
+                        <option>Rather not say</option>
+                        <option>Female</option>
+                        <option>Male</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="DescriptionEventInput">Fun facts about me :</label>
+                <textarea class="form-control" id="DescriptionEventInput" rows="3">{{user.description}}</textarea>
+            </div>
+            <div>
+                <p class="card-title">My interests :</p>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="museum" id="updateInterest1">
+                <label class="form-check-label" for="updateInterest1">Museum</label>
+                <br>
+                <input class="form-check-input" type="checkbox" value="music" id="updateInterest2">
+                <label class="form-check-label" for="updateInterest2">Music</label>
+                <br>
+                <input class="form-check-input" type="checkbox" value="movie" id="updateInterest3">
+                <label class="form-check-label" for="updateInterest3">Movie</label>
+            </div>
+            <button class="btn btn-lg btn-orange mt-4 float-right">{{ button_label|default('Save') }}</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</main>
+{% endfor %}
+
+{% endblock %}

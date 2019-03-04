@@ -12,7 +12,11 @@
         </div>
         <div class="row" >
             <div class="col-12 col-lg-7">
-                    {% for event in events %}
+                    {% for category in categories %}
+                    <div class="col-12 pb-3">
+                            <h2>{{category.name}}</h2>
+                        </div>
+                    {% for event in category.event %}
                 <div data-event-id = '{{ event.id }}'
                 data-event-name = '{{ event.name }}'
                 data-event-location-latitude = '{{ event.location.latitude }}'
@@ -41,6 +45,8 @@
                         </div>
                     </div>
                 </div>
+                <hr>
+                {% endfor %}
                 {% endfor %}
             </div>
             <div class="col-12 col-lg-5 mapbox m-0 mb-3">
@@ -151,6 +157,7 @@
             console.log('category id ' + $(this).data('event-category-id'))
 
             var markerEvent = L.marker([ $(this).data('event-location-latitude'), $(this).data('event-location-longitude') ]);
+
             markerEvent.addTo(carte).bindPopup($(this).data('event-name'));
 
             markerEvent.on('mouseover', function (e) {

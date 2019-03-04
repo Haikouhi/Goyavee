@@ -75,7 +75,6 @@
         </div>
         <hr>
         {% for category in categories %}
-        {% if category.id == 1 %}
         <section>
             <div class="row">
                 <div class="col-12 pb-1">
@@ -83,8 +82,7 @@
                 </div>
             </div>
             <div class="row">
-                {% for event in events %}
-                {% if event.category.id == 1 %}
+                {% for event in category.event %}
                 <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
                     <article class="activity-card">
                         <img class="card-img-top" src="{{ asset('/' ~ event.getPhoto()) }}" alt="image_activity">
@@ -92,103 +90,14 @@
                             <h5 class="card-title">{{event.name}}</h5>
                             <p class="card-text">{{ event.description|length > 90 ? event.description|slice(0, 90) ~
                                 '...' : event.description }}</p>
-                            <a href="{{ path('app_login') }}" class="btn btn-primary btn-orange">Let's see closer !</a>
+                            <a href="{{ path('event_show', { 'id' : event.id }) }}" class="btn btn-primary btn-orange">Let's see closer !</a>
                         </div>
                     </article>
                 </div>
-                {% endif %}
                 {% endfor %}
                 <hr>
             </div>
         </section>
-        {% endif %}
-        {% endfor %}
-        {% for category in categories %}
-        {% if category.id == 2 %}
-        <section>
-            <div class="row">
-                <div class="col-12 pb-1">
-                    <h2>{{category.name}}</h2>
-                </div>
-            </div>
-            <div class="row">
-                {% for event in events %}
-                {% if event.category.id == 2 %}
-                <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
-                    <article class="activity-card">
-                        <img class="card-img-top" src="{{ asset('/' ~ event.getPhoto()) }}" alt="image_activity">
-                        <div class="card-body">
-                            <h5 class="card-title">{{event.name}}</h5>
-                            <p class="card-text">{{ event.description|length > 90 ? event.description|slice(0, 90) ~
-                                '...' : event.description }}</p>
-                            <a href="{{ path('app_login') }}" class="btn btn-primary btn-orange">Let's see closer !</a>
-                        </div>
-                    </article>
-                </div>
-                {% endif %}
-                {% endfor %}
-                <hr>
-            </div>
-        </section>
-        {% endif %}
-        {% endfor %}
-        {% for category in categories %}
-        {% if category.id == 3 %}
-        <section>
-            <div class="row">
-                <div class="col-12 pb-1">
-                    <h2>{{category.name}}</h2>
-                </div>
-            </div>
-            <div class="row">
-                {% for event in events %}
-                {% if event.category.id == 3 %}
-                <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
-                    <article class="activity-card">
-                        <img class="card-img-top" src="{{ asset('/' ~ event.getPhoto()) }}" alt="image_activity">
-                        <div class="card-body">
-                            <h5 class="card-title">{{event.name}}</h5>
-                            <p class="card-text">{{ event.description|length > 90 ? event.description|slice(0, 90) ~
-                                '...' : event.description }}</p>
-                            <a href="{{ path('app_login') }}" class="btn btn-primary btn-orange">Let's see closer !</a>
-                        </div>
-                    </article>
-                </div>
-                {% endif %}
-                {% endfor %}
-                <hr>
-            </div>
-        </section>
-        {% endif %}
-        {% endfor %}
-        {% for category in categories %}
-        {% if category.id == 4 %}
-        <section>
-            <div class="row">
-                <div class="col-12 pb-1">
-                    <h2>{{category.name}}</h2>
-                </div>
-            </div>
-            <div class="row">
-                {% for event in events %}
-                {% if event.category.id == 4 %}
-                <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
-                    <article class="activity-card">
-                        <img class="card-img-top" src="{{ asset('/' ~ event.getPhoto()) }}" alt="image_activity">
-                        <div class="card-body">
-                            <h5 class="card-title">{{event.name}}</h5>
-                            <p class="card-text">{{ event.description|length > 90 ? event.description|slice(0, 90) ~
-                                '...' : event.description }}</p>
-                            <a href="{{ path('app_login') }}" class="btn btn-primary btn-orange">Let's see closer !</a>
-                        </div>
-                    </article>
-                </div>
-                {% endif %}
-                {% endfor %}
-                <hr>
-            </div>
-        </section>
-        {% endif %}
         {% endfor %}
 
         <section>

@@ -39,7 +39,7 @@
                             <div class="card-body event-informations">
                                 <p class="card-text text-justify"><small class="text-muted">{{ event.description|length > 115 ? event.description|slice(0, 110) ~ '...' : event.description }}</small></p>
                                 <div class="d-flex justify-content-center">
-                                    <a href="{{ path('event_show', {'id': event.id}) }}" class="btn btn-primary btn-orange mt-2 mb-4"> Let's see closer ! </a>
+                                    <a href="{{ path('event_show', {'id': event.id}) }}" class="btn btn-primary btn-orange mt-2 mb-4"> See more ... </a>
                                 </div>
                             </div>
                         </div>

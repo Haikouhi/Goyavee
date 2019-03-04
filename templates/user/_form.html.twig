@@ -1,4 +1,87 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn btn-lg btn-orange mt-4 float-right">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<main class="container position-relative">
+    <div class="card mt-5 mb-5">
+        <div class="d-flex justify-content-center">
+            <img src="{{ asset('/' ~ user.getPhoto()) }}" class="profile_picture" alt="profile_picture">
+        </div>
+        <h5 class="text-center card-title">Update my profile</h5>
+        <h6 class="text-center card-title">{{user.email}}</h6>
+        <div class="card-body">
+            <div class="col-md-10 col-lg-6 offset-lg-3 pb-4">
+                <div class="justify-content-center">
+                    <p class="card-title text-center">Tell us more about yourself, your profil is only 25% complete:
+                    </p>
+                    <div class="progress">
+                        <div class="progress-bar bg-warning" style="width:40%"></div>
+                    </div>
+                </div>
+            </div>
+
+            {{ form_start(form) }}
+            {# {{ form_widget(form) }} #}
+            <div class="form-row justify-content-center">
+                <label for="ImagesEventInput" class="pr-3 d-flex align-items-center m-0">Update my profile
+                    picture:</label>
+                <div class="form-group col-md-4 col-lg-3 custom-file mr-1 mt-2">
+                        {{ form_widget(form.photo, {'attr': {'class': 'custom-file-input'}}) }}
+                        {{ form_row(form.photo) }}
+                </div>
+            </div>
+            <div class="form-row mt-5">
+                <div class="form-group col-md-6">
+                        {{ form_label(form.plainPassword, 'Password') }}
+                        {{ form_widget(form.plainPassword, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_row(form.plainPassword) }}
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="confirmPasswordInput">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirmPasswordInput" required>
+                </div> 
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                        {{ form_label(form.nickname, 'User name') }}
+                        {{ form_widget(form.nickname, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_row(form.nickname) }}
+                </div>
+                <div class="form-group col-md-4">
+                        {{ form_label(form.firstname, 'Firstname') }}
+                        {{ form_widget(form.firstname, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_row(form.firstname) }}
+                </div>
+                <div class="form-group col-md-4">
+                        {{ form_label(form.birthdate, 'Birthdate') }}
+                        {{ form_widget(form.birthdate, {'attr': {'class': ''}}) }}
+                        {{ form_row(form.birthdate) }}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                        {{ form_label(form.language, 'I speak') }}
+                        {{ form_widget(form.language, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_row(form.language) }}
+                </div>
+                <div class="form-group col-md-6">
+                        {{ form_label(form.nationality, 'I am') }}
+                        {{ form_widget(form.nationality, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_row(form.nationality) }}                
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    {{ form_label(form.gender, 'Gender :') }}
+                    {{ form_widget(form.gender, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_row(form.gender) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                    {{ form_label(form.description, 'Description') }}
+                    {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_row(form.description) }}
+            </div>
+            <button class="btn btn-lg btn-orange mt-4 float-right">{{ button_label|default('Save') }}</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</main>
+

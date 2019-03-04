@@ -6,6 +6,9 @@
 /public/bundles/
 /var/
 /vendor/
+/public/dist/images/event/
+/public/dist/images/user/
+
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###

@@ -14,6 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Form\CommentType;
 
 /**
+ * @IsGranted("ROLE_USER")
  * @Route("/event")
  */
 class EventController extends AbstractController
@@ -146,6 +147,7 @@ class EventController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/{id}", name="event_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Event $event): Response

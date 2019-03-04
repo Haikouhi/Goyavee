@@ -99,11 +99,13 @@ class EventController extends AbstractController
         ]);
     }
 
-    /**
+    /** 
      * @Route("/{id}", name="event_show", methods={"GET", "POST"})
      */
     public function show(Request $request, Event $event): Response
     {
+
+        
         $comment = new Comment();
         $commentForm = $this->createForm(CommentType::class, $comment);
 
@@ -177,4 +179,33 @@ class EventController extends AbstractController
 
         return $this->redirectToRoute('event_index');
     }
+
+    // /**
+    //  * @IsGranted("ROLE_USER")
+    //  * @Route("/{id}", name="event_participate", methods={"POST"})
+    //  */
+
+    //  public function participate(Request $request, Event $event): Response
+    //  {
+
+    
+    // $incomingUser = $request->$this->getuser(); 
+    // $currentEvent = $request['Event'];   
+
+    //  $status = new Status();
+    //  $status->setName("participe");
+    //  $status->setuser($incomingUser);
+    //  $status->setEvent($currentEvent); 
+     
+     
+    //  $entityManager = $this->getDoctrine()->getManager();
+    //  $entityManager->persist($status);
+    //  $entityManager->flush();
+
+    
+
+    //  return $this->redirectToRoute('event_index');
+
+    // }
+
 }

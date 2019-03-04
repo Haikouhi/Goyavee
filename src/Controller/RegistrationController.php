@@ -35,11 +35,7 @@ class RegistrationController extends AbstractController
 
             /**********************************************************************/
 
-           echo "<pre>";
-           var_dump( $_FILES); die;
-
-           imagecreatefromjpeg($file);
-
+    
             //retrive the file send in the request
             $file = $request->files->get('registration_form')['photo'];
 

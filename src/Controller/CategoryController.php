@@ -17,6 +17,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class CategoryController extends AbstractController
 {
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/", name="category_index", methods={"GET"})
      */
     public function index(CategoryRepository $categoryRepository): Response
@@ -51,6 +52,7 @@ class CategoryController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/{id}", name="category_show", methods={"GET"})
      */
     public function show(Category $category): Response

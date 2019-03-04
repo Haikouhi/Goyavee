@@ -11,8 +11,8 @@
     <!-- sidebar profile -->
     <div class="row">
         <div class="col-sm-12 col-md-4 col-lg-3">
-            <div class="d-flex justify-content-center">
-                <img src="{{ asset('dist/images/user/' ~ user.getPhoto()) }}" class="profile_picture" alt="profile_picture">
+            <div class="d-flex justify-content-center profile-box">
+                <img src="{{ asset('dist/images/user/' ~ user.getPhoto()) }}" class="private-profile-picture" alt="profile_picture">
             </div>
             <div>
                 <p class="text-center card-text">Hi {{ user.nickname }}</p>

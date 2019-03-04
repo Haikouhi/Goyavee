@@ -49,7 +49,7 @@
                         <hr>
                         <p class="card-title">When and where ?</p>
                         <p class="card-text"> {{ event.dateStart ? event.dateStart|date('l d F Y - H:i') : '' }} until {{ event.dateEnd ? event.dateEnd|date('l d F Y - H:i') : '' }}</p>
-                        <p class="card-text"> {{ event.location.completeAdress }}</p>
+                        <p class="card-text"> {{ event.location.name }} - {{ event.location.completeAdress }}</p>
                         <p class="card-title mt-4">What it is about ?</p>
                         <p class="card-text text-justify">{{ event.description }}</p>
                         <p class="card-title mt-4">Accessibility</p>

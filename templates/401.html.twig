@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Unauthorized | Goyavee!{% endblock %}
+
+{% block body %}
+
+<main class="container-fluid">
+        <div class="container text-center">
+                <img src="{{ asset('dist/images/signin.jpg') }}" style="max-height : 100%; max-width: 500px" alt="lost_401_error">
+            <br>
+            <p class="card-title text-center pt-4">
+                Aha! Looks like we've piqued your curiosity! Log on it or sign up to enjoy all of our cool features! See you in a minute!
+            </p>
+            <div class="d-flex justify-content-center pt-4">
+                <a  href="{{ path('app_register') }}" class="btn btn-lg btn-orange mt-2 mb-4 mr-3">Sign up</a>
+                <a  href="{{ path('app_login') }}" class="btn btn-lg btn-blue mt-2 mb-4">Sign up</a>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}

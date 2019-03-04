@@ -780,8 +780,15 @@ width: 80%;
         left : 200px;
     }
     .mapbox{
-        height : 800px;
+        position: fixed;
+        top: 160px;
+        right : 10px;
+        height : 600px;
      }
+     #mapevent{
+        max-width : 450px;
+    
+    }
 
 
  }
@@ -813,7 +820,8 @@ Extra large devices (large desktops, 1200px and up) */
         left : 290px;
     }
     .mapbox{
-        height : 823px;
+        height : 650px;
+        width : 50%;
      }
 
  }

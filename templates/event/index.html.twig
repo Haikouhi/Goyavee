@@ -19,6 +19,7 @@
                     {% for event in category.event %}
                 <div data-event-id = '{{ event.id }}'
                 data-event-name = '{{ event.name }}'
+                data-event-location-name = '{{ event.location.name }}'
                 data-event-location-latitude = '{{ event.location.latitude }}'
                 data-event-location-longitude = '{{ event.location.longitude }}'
                 data-event-category-id = '{{ event.category.id }}'
@@ -37,7 +38,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="card-body event-informations">
-                                <p class="card-text text-justify"><small class="text-muted">{{ event.description|length > 115 ? event.description|slice(0, 110) ~ '...' : event.description }}</small></p>
+                                <p class="card-text text-justify mb-lg-1 mb-xl-3"><small class="text-muted">{{ event.description|length > 115 ? event.description|slice(0, 110) ~ '...' : event.description }}</small></p>
                                 <div class="d-flex justify-content-center">
                                     <a href="{{ path('event_show', {'id': event.id}) }}" class="btn btn-primary btn-orange mt-2 mb-4"> See more ... </a>
                                 </div>
@@ -158,7 +159,7 @@
 
             var markerEvent = L.marker([ $(this).data('event-location-latitude'), $(this).data('event-location-longitude') ]);
 
-            markerEvent.addTo(carte).bindPopup($(this).data('event-name'));
+            markerEvent.addTo(carte).bindPopup($(this).data('event-location-name'));
 
             markerEvent.on('mouseover', function (e) {
                 this.openPopup();

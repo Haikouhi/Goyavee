@@ -1,6 +1,3 @@
-{% block body %}
-
-{% for u in user %}
 <main class="container position-relative">
     <div class="card mt-5 mb-5">
         <div class="d-flex justify-content-center">
@@ -20,83 +17,71 @@
             </div>
 
             {{ form_start(form) }}
-            {{ form_widget(form) }}
+            {# {{ form_widget(form) }} #}
             <div class="form-row justify-content-center">
                 <label for="ImagesEventInput" class="pr-3 d-flex align-items-center m-0">Update my profile
                     picture:</label>
                 <div class="form-group col-md-4 col-lg-3 custom-file mr-1 mt-2">
-                    <input type="file" class="custom-file-input" id="ImagesEventInput">
-                    <label class="custom-file-label" for="ImagesEventInput"></label>
+                        {{ form_widget(form.photo, {'attr': {'class': 'custom-file-input'}}) }}
+                        {{ form_row(form.photo) }}
                 </div>
             </div>
             <div class="form-row mt-5">
                 <div class="form-group col-md-6">
-                    <label for="updatePasswordInput">Password</label>
-                    <input type="password" class="form-control" id="updatePasswordInput" placeholder="Please write your password"
-                        required>
+                        {{ form_label(form.plainPassword, 'Password') }}
+                        {{ form_widget(form.plainPassword, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_row(form.plainPassword) }}
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="updateConfirmPasswordInput">Confirm Password</label>
-                    <input type="password" class="form-control" id="updateConfirmPasswordInput" required>
-                </div>
+                    <label for="confirmPasswordInput">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirmPasswordInput" required>
+                </div> 
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <label for="updateUserNameInput">User name</label>
-                    <input type="text" id="updateUserNameInput" class="form-control" value="{{user.nickname}}">
+                        {{ form_label(form.nickname, 'User name') }}
+                        {{ form_widget(form.nickname, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_row(form.nickname) }}
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="updateFirstnameInput">Firstname</label>
-                    <input type="text" class="form-control" id="updateFirstnameInput" value="{{user.firstname}}">
+                        {{ form_label(form.firstname, 'Firstname') }}
+                        {{ form_widget(form.firstname, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_row(form.firstname) }}
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="updateAgeInput">Age</label>
-                    <input type="text" class="form-control" id="updateAgeInput" value="{{ user.birthdate ? user.birthdate|date('Y-m-d') : '' }}">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="updateLanguagesInput">I speak</label>
-                    <input type="text" class="form-control" id="updateLanguagesInput" value="{{user.language}}">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="updateNationality">I am</label>
-                    <input type="text" class="form-control" id="updateNationality" value="{{ user.nationality }}">
+                        {{ form_label(form.birthdate, 'Birthdate') }}
+                        {{ form_widget(form.birthdate, {'attr': {'class': ''}}) }}
+                        {{ form_row(form.birthdate) }}
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="updateAgeInput">I identify as :</label>
-                    <select class="form-control" id="updateLanguagesInput">
-                        <option>Rather not say</option>
-                        <option>Female</option>
-                        <option>Male</option>
-                    </select>
+                        {{ form_label(form.language, 'I speak') }}
+                        {{ form_widget(form.language, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_row(form.language) }}
+                </div>
+                <div class="form-group col-md-6">
+                        {{ form_label(form.nationality, 'I am') }}
+                        {{ form_widget(form.nationality, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_row(form.nationality) }}                
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    {{ form_label(form.gender, 'Gender :') }}
+                    {{ form_widget(form.gender, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_row(form.gender) }}
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="DescriptionEventInput">Fun facts about me :</label>
-                <textarea class="form-control" id="DescriptionEventInput" rows="3">{{user.description}}</textarea>
-            </div>
-            <div>
-                <p class="card-title">My interests :</p>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="museum" id="updateInterest1">
-                <label class="form-check-label" for="updateInterest1">Museum</label>
-                <br>
-                <input class="form-check-input" type="checkbox" value="music" id="updateInterest2">
-                <label class="form-check-label" for="updateInterest2">Music</label>
-                <br>
-                <input class="form-check-input" type="checkbox" value="movie" id="updateInterest3">
-                <label class="form-check-label" for="updateInterest3">Movie</label>
+                    {{ form_label(form.description, 'Description') }}
+                    {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_row(form.description) }}
             </div>
             <button class="btn btn-lg btn-orange mt-4 float-right">{{ button_label|default('Save') }}</button>
             {{ form_end(form) }}
         </div>
     </div>
 </main>
-{% endfor %}
 
-{% endblock %}

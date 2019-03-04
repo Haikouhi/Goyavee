@@ -60,7 +60,9 @@ class UserType extends AbstractType
                 ])
             ->add('language', TextType::class)
             ->add('nationality', TextType::class)
-            ->add('photo', FileType::class)
+            ->add('photo', FileType::class,[
+                'mapped' => false
+            ])
             ->add('gender', ChoiceType::class, [
                 'choices' => [
                     "Rather not say" => 3,

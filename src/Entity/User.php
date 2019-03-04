@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use PhpParser\Node\Expr\Cast\String_;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 
 /**
@@ -229,6 +231,12 @@ class User implements UserInterface
         $this->birthdate = $birthdate;
 
         return $this;
+    }
+
+    public function getAge(): ?int
+    {
+        $age = $this->getBirthdate()->diff(new \DateTime('now'))->y;
+        return $age;
     }
 
     public function getLanguage(): ?string

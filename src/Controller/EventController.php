@@ -40,7 +40,7 @@ class EventController extends AbstractController
      */
     public function new(Request $request): Response
     {
-
+        
         $event = new Event();
         $form = $this->createForm(EventType::class, $event);
 

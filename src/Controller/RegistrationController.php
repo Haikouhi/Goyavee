@@ -1,5 +1,7 @@
 <?php
 
+
+
 namespace App\Controller;
 
 use App\Entity\User;
@@ -12,6 +14,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
+
+
 
 
 
@@ -30,7 +35,10 @@ class RegistrationController extends AbstractController
 
             /**********************************************************************/
 
-           
+           echo "<pre>";
+           var_dump( $_FILES); die;
+
+           imagecreatefromjpeg($file);
 
             //retrive the file send in the request
             $file = $request->files->get('registration_form')['photo'];
@@ -41,6 +49,7 @@ class RegistrationController extends AbstractController
             //create a var to change the name of the file
             $filename = md5(uniqid()) . '.' . $file->guessExtension();
 
+            
             //move the file into the folder
             $file->move(
                 $uploads_user_directory,

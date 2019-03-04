@@ -58,8 +58,9 @@ class LocationController extends AbstractController
     public function ApiNew(Request $request): Response
     {
 
-
+        
         $location = new Location();
+        $location->setStreetNumber( $request->request->get('street_number') );
         $location->setStreetName( $request->request->get('street_name') );
         $location->setZip( $request->request->get('zip'));
         $location->setCity( $request->request->get('city') );
@@ -72,6 +73,7 @@ class LocationController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($location);
         $entityManager->flush();
+
 
         return new JsonResponse( $location->getId() );
         

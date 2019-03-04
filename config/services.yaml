@@ -5,7 +5,8 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
-    uploads_directory: '%kernel.project_dir%/public'
+    uploads_event_directory: '%kernel.project_dir%/public/dist/images/event'
+    uploads_user_directory: '%kernel.project_dir%/public/dist/images/user'
 
 services:
     # default configuration for services in *this* file

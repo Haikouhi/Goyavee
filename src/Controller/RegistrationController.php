@@ -1,5 +1,7 @@
 <?php
 
+
+
 namespace App\Controller;
 
 use App\Entity\User;
@@ -15,6 +17,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 
 
+
+
+
 class RegistrationController extends AbstractController
 {
     /**
@@ -27,6 +32,30 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            /**********************************************************************/
+
+    
+            //retrive the file send in the request
+            $file = $request->files->get('registration_form')['photo'];
+
+            //put the path to the folder that will stock our files in a var
+            $uploads_user_directory = $this->getParameter('uploads_user_directory');
+
+            //create a var to change the name of the file
+            $filename = md5(uniqid()) . '.' . $file->guessExtension();
+
+            
+            //move the file into the folder
+            $file->move(
+                $uploads_user_directory,
+                $filename
+            );
+
+            //set the user photo's attribut
+            $user->setPhoto($filename);
+
+        /**********************************************************************/  
             
             $user->setPassword(
                 $passwordEncoder->encodePassword(

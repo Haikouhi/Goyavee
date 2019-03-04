@@ -12,8 +12,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\CommentType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
+ * @IsGranted("ROLE_USER")
  * @Route("/event")
  */
 class EventController extends AbstractController
@@ -40,7 +42,7 @@ class EventController extends AbstractController
      */
     public function new(Request $request): Response
     {
-
+        
         $event = new Event();
         $form = $this->createForm(EventType::class, $event);
 
@@ -59,14 +61,14 @@ class EventController extends AbstractController
             $file = $request->files->get('event')['photo'];
 
             //put the path to the folder that will stock our files in a var
-            $uploads_directory = $this->getParameter('uploads_directory');
+            $uploads_event_directory = $this->getParameter('uploads_event_directory');
 
             //create a var to change the name of the file
             $filename = md5(uniqid()) . '.' . $file->guessExtension();
 
             //move the file into the folder
             $file->move(
-                $uploads_directory,
+                $uploads_event_directory,
                 $filename
             );
 
@@ -128,6 +130,10 @@ class EventController extends AbstractController
      */
     public function edit(Request $request, Event $event): Response
     {
+        if ($this->getUser()->getId() !== $event->getOrganizer()->getId()) {
+            return $this->redirectToRoute('event_index');
+        }
+        
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
 
@@ -136,16 +142,19 @@ class EventController extends AbstractController
 
             return $this->redirectToRoute('event_index', [
                 'id' => $event->getId(),
+                
             ]);
         }
 
         return $this->render('event/edit.html.twig', [
             'event' => $event,
             'form' => $form->createView(),
+            'user' => $this->getUser(),
         ]);
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/{id}", name="event_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Event $event): Response

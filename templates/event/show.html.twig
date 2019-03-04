@@ -44,7 +44,12 @@
                     <div class="card-body">
                         <h5 class="card-title text-center">{{ event.name }}</h5>
                         <div class="col-12 d-flex justify-content-center">
-                            <a href="#" class="btn btn-lg btn-primary btn-orange mt-2 mb-4">Go there!</a>
+                            <form action="{{ path('event_participate', {'id': event.id}) }}" method="post">
+                                <input type="submit" value="Participate!" href="{{ path('event_show', {'id': event.id}) }}" class="btn btn-lg btn-primary btn-orange mt-2 mb-4"></a>
+                            </form>
+                            <form action="{{ path('event_interest', {'id': event.id}) }}" method="post">
+                                <input type="submit" value="Interested!" href="{{ path('event_show', {'id': event.id}) }}" class="btn btn-lg btn-primary btn-orange mt-2 mb-4"></a>
+                            </form>
                         </div>
                         <hr>
                         <p class="card-title">When and where ?</p>

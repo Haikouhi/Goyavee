@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Event;
 use App\Entity\Comment;
+use App\Entity\Status;
 use App\Entity\Location;
 use App\Form\EventType;
 use App\Repository\EventRepository;
@@ -100,6 +101,7 @@ class EventController extends AbstractController
     }
 
     /** 
+     * @IsGranted("ROLE_USER")
      * @Route("/{id}", name="event_show", methods={"GET", "POST"})
      */
     public function show(Request $request, Event $event): Response
@@ -180,32 +182,52 @@ class EventController extends AbstractController
         return $this->redirectToRoute('event_index');
     }
 
-    // /**
-    //  * @IsGranted("ROLE_USER")
-    //  * @Route("/{id}", name="event_participate", methods={"POST"})
-    //  */
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/participate/{id}", name="event_participate", methods={"POST"})
+     */
 
-    //  public function participate(Request $request, Event $event): Response
-    //  {
+     public function participate(Request $request, Event $event): Response
+     {
 
+    $currentEvent =  $request->get("event");  
     
-    // $incomingUser = $request->$this->getuser(); 
-    // $currentEvent = $request['Event'];   
+     $status = new Status();
+     $status->setName("participe");
+     $status->setUser($this->getUser());
+     $status->setEvent($currentEvent); 
+      
+     $entityManager = $this->getDoctrine()->getManager();
+     $entityManager->persist($status);
+     $entityManager->flush();
 
-    //  $status = new Status();
-    //  $status->setName("participe");
-    //  $status->setuser($incomingUser);
-    //  $status->setEvent($currentEvent); 
-     
-     
-    //  $entityManager = $this->getDoctrine()->getManager();
-    //  $entityManager->persist($status);
-    //  $entityManager->flush();
 
-    
+     return $this->redirectToRoute('event_index');
 
-    //  return $this->redirectToRoute('event_index');
+    }
 
-    // }
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/interested/{id}", name="event_interest", methods={"POST"})
+     */
+
+    public function interestedIn(Request $request, Event $event): Response
+    {
+
+        $currentEvent =  $request->get("event");
+
+        $status = new Status();
+        $status->setName("intéressé");
+        $status->setUser($this->getUser());
+        $status->setEvent($currentEvent);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($status);
+        $entityManager->flush();
+
+
+        return $this->redirectToRoute('event_index');
+
+    }
 
 }

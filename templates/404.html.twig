@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} 404 - Page not found | Goyavee!{% endblock %}
+
+{% block body %}
+
+<main class="container-fluid">
+        <div class="container">
+            <img src="{{ asset('dist/images/lost.jpg') }}" alt="lost_error_404">
+            <br>
+            <div class="d-flex justify-content-center">
+                <p class="card-title text-center pt-4">
+                    Oops, looks like you're lost! <br> Click on the button below and get back to all the fun. See you in a
+                    minute!
+                </p>
+            </div>
+            <div class="d-flex justify-content-center pt-4">
+                <a href="{{ path('app_index') }}" class="btn btn-lg btn-primary btn-orange mt-2 mb-4">Home Page</a>
+            </div>
+        </div>
+    </main>
+
+
+{% endblock %}

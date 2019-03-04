@@ -20,6 +20,7 @@ use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Doctrine\ORM\Query\AST\Functions\CurrentDateFunction;
 use Symfony\Component\Intl\Data\Generator\CurrencyDataGenerator;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Validator\Constraints\Length;
 
 class EventType extends AbstractType
 {
@@ -35,9 +36,20 @@ class EventType extends AbstractType
             )
             ->add('photo', FileType::class, [
                 'mapped' => false,
-                'label' => 'Ajouter une photo',
+                'label' => 'Add a picture',
             ])
-            ->add('description', TextareaType::class)
+            ->add('description', TextareaType::class,[
+                // instead of being set onto the object directly,
+                // this is read and encoded in the controller
+                'constraints' => [
+                    
+                    new Length([
+                        'max' => 290,
+                        'maxMessage' => 'Your descripton should be maximum {{ limit }} characters',
+
+                    ]),
+                ],
+            ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'name',

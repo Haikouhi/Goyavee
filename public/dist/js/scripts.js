@@ -19,76 +19,69 @@ $('.cookie-btn').on('click', function(){
 });
 
 //  not connected : map (home)
-if (document.getElementById('macarte') !== null) {
-    var coords = null;
-    
-    window.addEventListener('load', function(){
-        if(window.jQuery){
-            console.log('Le script est chargé');
-        }else{
-            console.log('Problème avec le script');
-        }
-    });
+// if (document.getElementById('macarte') !== null) {
+//     var coords = null;
     
     
     
-    /*Affichage carte*/
     
-    var carte = L.map('macarte').setView([46.3630104, 2.9846608], 5);
+//     /*Affichage carte*/
     
-    
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(carte);
+//     var carte = L.map('macarte').setView([46.3630104, 2.9846608], 5);
     
     
-    /*Géolocalisation*/
+//     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+//         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+//     }).addTo(carte);
     
-    function getLocation() {
-     if (navigator.geolocation) {
-       navigator.geolocation.getCurrentPosition(showPosition);
     
-     } else {
-         alert('La géolocalisation n\'est pas fonctionnelle.');
-     }
-    }
+//     /*Géolocalisation*/
     
-    /*Marqueur et zoom*/
+//     function getLocation() {
+//      if (navigator.geolocation) {
+//        navigator.geolocation.getCurrentPosition(showPosition);
     
-    function showPosition(position) {
+//      } else {
+//          alert('La géolocalisation n\'est pas fonctionnelle.');
+//      }
+//     }
     
-        var marker = L.marker([position.coords.latitude, position.coords.longitude]);
-        marker.addTo(carte);
+//     /*Marqueur et zoom*/
     
-        carte.setZoom(16).panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
+//     function showPosition(position) {
     
-        coords = position.coords;
-        console.log(coords);
+//         var marker = L.marker([position.coords.latitude, position.coords.longitude]);
+//         marker.addTo(carte);
     
-        /*carte.setZoom(16);*/
+//         carte.setZoom(16).panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
+    
+//         coords = position.coords;
+//         console.log(coords);
+    
+//         /*carte.setZoom(16);*/
 
-        // Changes not geolocalised to geolocalise : removing css blur and button
-        if (coords !== null){
-            var map = document.getElementById('macarte');
-            var button = document.getElementById('btn-geo');
+//         // Changes not geolocalised to geolocalise : removing css blur and button
+//         if (coords !== null){
+//             var map = document.getElementById('macarte');
+//             var button = document.getElementById('btn-geo');
             
-            map.classList.remove('map-blur');
-            button.style.display ="none";
-}
-    }
-} 
+//             map.classList.remove('map-blur');
+//             button.style.display ="none";
+// }
+//     }
+// } 
 
 // map after connection 
 
-if (document.getElementById('mapevent') !== null) {
-    var mapevent = L.map('mapevent').setView([46.3630104, 2.9846608], 6);
+// if (document.getElementById('mapevent') !== null) {
+//     var mapevent = L.map('mapevent').setView([46.3630104, 2.9846608], 6);
 
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(mapevent);
-    var marker = L.marker([46.6835956, -0.4137665]);
-    marker.addTo(mapevent);
-} 
+//     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+//                 attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+//             }).addTo(mapevent);
+//     var marker = L.marker([46.6835956, -0.4137665]);
+//     marker.addTo(mapevent);
+// } 
 
 // creating an event
     // adding location

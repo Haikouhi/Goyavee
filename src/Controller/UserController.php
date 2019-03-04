@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use App\Repository\EventRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,8 +26,11 @@ class UserController extends AbstractController
      */
     public function index(UserRepository $userRepository): Response
     {
+        $events = $this->getUser()->getEvents();
+
         return $this->render('user/show.html.twig', [
             'user' => $this->getUser(),
+            'events' => $events,
         ]);
     }
 
@@ -62,7 +66,6 @@ class UserController extends AbstractController
     {
         $user = $this->getUser();
 
-        
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
         
@@ -73,7 +76,7 @@ class UserController extends AbstractController
                 'id' => $user->getId(),
                 ]);
             }
-            
+        
         return $this->render('user/edit.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
@@ -81,12 +84,17 @@ class UserController extends AbstractController
     }
 
     /**
+     * Affichage du profil public
+     * @IsGranted("ROLE_USER")
      * @Route("/{id}", name="user_show", methods={"GET"})
      */
     public function show(User $user): Response
     {
+        $events = $this->getUser()->getEvents();
+
         return $this->render('user/index.html.twig', [
-            'user' => $user,
+            'user' => $this->getUser(),
+            'events' => $events,
         ]);
     }
 

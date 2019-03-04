@@ -4,8 +4,80 @@
 {% block title %}Event{% endblock %}
 
 {% block body %}
+<main class="container position-relative">
+        <div class="row">
+            <div class="col-12 col-md-3 d-flex justify-content-center justify-content-md-start">
+                <a href="#" class="btn btn-primary btn-orange mt-2 mb-4"> Create an event</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-lg-7">
+                <div class="card mb-3" data-event-id = '{{ event.id }}'
+                data-event-name = '{{ event.name }}'
+                data-event-location-name = '{{ event.location.name }}'
+                data-event-location-latitude = '{{ event.location.latitude }}'
+                data-event-location-longitude = '{{ event.location.longitude }}'>
+                    <div id="carouselEvent" class="carousel slide d-flex justify-content-center" data-ride="carousel">
+                        <div class="carousel-event mt-md-3" style="width: 500px;">
+                            <div class="carousel-inner center-block justify-content-md-center">
+                                <div class="carousel-item active image-event">
+                                    <img class="d-block w-100" src="{{ asset('/' ~ event.getPhoto()) }}" alt="First slide">
+                                </div>
+                                <div class="carousel-item image-event">
+                                    <img class="d-block w-100" src="{{ asset('/' ~ event.getPhoto()) }}" alt="Second slide">
+                                </div>
+                                <div class="carousel-item image-event">
+                                    <img class="d-block w-100" src="{{ asset('/' ~ event.getPhoto()) }}" alt="Third slide">
+                                </div>
+                            </div>
 
-    <h1>Event</h1>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselEvent" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselEvent" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{ event.name }}</h5>
+                        <div class="col-12 d-flex justify-content-center">
+                            <a href="#" class="btn btn-lg btn-primary btn-orange mt-2 mb-4">Go there!</a>
+                        </div>
+                        <hr>
+                        <p class="card-title">When and where ?</p>
+                        <p class="card-text"> {{ event.dateStart ? event.dateStart|date('l d F Y - H:i') : '' }} until {{ event.dateEnd ? event.dateEnd|date('l d F Y - H:i') : '' }}</p>
+                        <p class="card-text"> {{ event.location.completeAdress }}</p>
+                        <p class="card-title mt-4">What it is about ?</p>
+                        <p class="card-text text-justify">{{ event.description }}</p>
+                        <p class="card-title mt-4">Accessibility</p>
+                        <i class="fas fa-wheelchair"></i>
+                        <i class="fas fa-sign-language"></i>
+                        <i class="fas fa-assistive-listening-systems"></i>
+                        <i class="fas fa-deaf"></i>
+                        <i class="fas fa-low-vision"></i>
+                    </div>
+                    <div>
+                            <p class="card-text pl-3">If you wish to delete your event, contact us! </p>
+                    </div>
+                    <div class="ml-2">
+                        <a href="{{ path('event_index') }}" class="btn btn-blue mt-2 mb-4"> Back </a>
+                        <a href="{{ path('event_edit', {'id': event.id}) }}" class="btn btn-orange mt-2 mb-4"> Edit my event </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-5 mapbox m-0 mb-3">
+                <div id="mapevent"></div>
+                <a onclick="getLocation()" class="btn btn-orange" style="position: absolute; top: 20px; left: 70px; z-index:210;">Find me</a>
+            </div>
+        </div>
+    </main>
+
+
+
+{#  <h1>Event</h1>
 
     <table class="table">
         <tbody>
@@ -65,5 +137,61 @@
     
     <button class="btn">{{ button_label|default('Save') }}</button>
     {{ form_end(commentForm) }}
+     #}
+{% endblock %}
+
+{% block javascripts %}
+<script> 
+        /*Affichage carte*/
+        var carte = L.map('mapevent').setView([46.3630104, 2.9846608], 5);
     
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(carte);
+    
+        /*Géolocalisation*/
+        function getLocation() {
+            if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+    
+            } else {
+                alert('La géolocalisation n\'est pas fonctionnelle.');
+            }
+        }
+    
+        /*Marqueur et zoom*/
+    
+        function showPosition(position) {
+        var marker = L.marker([position.coords.latitude, position.coords.longitude]);
+        marker.addTo(carte).bindPopup('You are here.');
+        marker.on('mouseover', function (e) {
+                this.openPopup();
+            });
+            marker.on('mouseout', function (e) {
+                this.closePopup();
+            });
+    
+        carte.setZoom(16).panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
+    
+        }
+    
+        $(function() {
+            $("div[data-event-id]").each(function() {
+    
+                console.log('category id ' + $(this).data('event-category-id'))
+    
+                var markerEvent = L.marker([ $(this).data('event-location-latitude'), $(this).data('event-location-longitude') ]);
+    
+                markerEvent.addTo(carte).bindPopup($(this).data('event-location-name'));
+    
+                markerEvent.on('mouseover', function (e) {
+                    this.openPopup();
+                });
+                markerEvent.on('mouseout', function (e) {
+                    this.closePopup();
+                });
+        
+            });
+        });
+    </script>
 {% endblock %}

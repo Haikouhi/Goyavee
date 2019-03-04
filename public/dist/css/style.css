@@ -25,16 +25,20 @@ ul, li{
     padding-left : 0px;
 }
 
-p{
+p, i{
     color: #414770;
     font-family: 'Raleway', sans-serif;
+}
+
+a i{
+    color : white;
 }
 
 .btn-orange {
     background: rgba(244, 96, 54, .8);
     border: none;
     outline: none;
-    color: white;
+    color: white !important;
     font-weight: bold;
     font-family: 'Lato', sans-serif;
  }
@@ -464,6 +468,10 @@ main{
 .carousel-control-prev, .carousel-control-next {
     filter: invert(100%);
 }
+.image-event img{
+    min-height: 150px;
+    max-height : 200px;
+}
 
 /* Newsletter and map */
 
@@ -512,6 +520,7 @@ z-index: 140;
 #mapevent{
     height: 100%; 
     z-index : 200;
+
 }
 
 /* Private profile */
@@ -771,8 +780,15 @@ width: 80%;
         left : 200px;
     }
     .mapbox{
-        height : 800px;
+        position: fixed;
+        top: 160px;
+        right : 10px;
+        height : 600px;
      }
+     #mapevent{
+        max-width : 450px;
+    
+    }
 
 
  }
@@ -804,7 +820,8 @@ Extra large devices (large desktops, 1200px and up) */
         left : 290px;
     }
     .mapbox{
-        height : 780px;
+        height : 650px;
+        width : 50%;
      }
 
  }

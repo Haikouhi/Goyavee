@@ -4,7 +4,7 @@
             <a href="{{ path('event_index') }}"> <img src="{{ asset('dist/images/logos/LogoGoyavee@0,25x.png') }}" alt="Logo"></a>
         </span>
         <div class="d-md-none ml-5 mb-2 nav-picture" id="profile_pic_mobile">
-            <img src="{{ asset('uploads/users/') }}{{app.user.photo}}" alt="profile_picture">
+            <img src="{{ asset('dist/images/user/') }}{{app.user.photo}}" alt="profile_picture" class="profile_picture">
         </div>
         <nav class="menucontent position-fixed">
             <ul class="py-2">
@@ -39,7 +39,7 @@
            
         </li>
         <div class="d-none d-md-block nav-picture" id="profile_pic_desktop">
-            <img src="{{ asset('uploads/users/') }}{{app.user.photo}}" alt="profile_picture">
+            <img src="{{ asset('dist/images/user/') }}{{app.user.photo}}" alt="profile_picture" class="profile_picture">
         </div>
     </ul>
 </nav>

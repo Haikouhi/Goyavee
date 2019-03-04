@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-md-10 col-lg-12">
                 <div class="d-flex justify-content-center">
-                    <img src="{{ asset('/' ~ user.getPhoto()) }}" class="profile_picture" alt="profile_picture">
+                    <img src="{{ asset('dist/images/user/' ~ user.getPhoto()) }}" class="profile_picture" alt="profile_picture">
                 </div>
             </div>
         </div>
@@ -122,7 +122,7 @@
                                     <div class="item">
                                         <div class="pad15">
                                             <p class="lead">{{event.name}}</p>
-                                            <div><img src="{{ asset('/' ~ event.getPhoto()) }}" alt="image_event"></div>
+                                            <div><img src="{{ asset('dist/images/event/' ~ event.getPhoto()) }}" alt="image_event"></div>
                                             <p class="mt-1">{{event.location.name}}</p>
                                             <p>{{ event.dateStart ? event.dateStart|date('Y/m/d') : '' }}</p>
                                         </div>

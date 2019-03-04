@@ -381,12 +381,6 @@ fieldset[disabled] .btn-twitter.focus {
     margin-left : 15px;
     height: auto;
     width: 60px;
-    background: white;
-    border-radius: 30px;
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
-    -ms-border-radius: 30px;
-    -o-border-radius: 30px;
 }
 
 .menucontent {
@@ -525,8 +519,6 @@ z-index: 140;
 
 /* Private profile */
 .profile_picture {
-    width: 180px;
-    height: 100%;
     border-radius: 100px;
     -webkit-border-radius: 100px;
     -moz-border-radius: 100px;
@@ -534,6 +526,10 @@ z-index: 140;
     -o-border-radius: 100px;
     margin: 10px;
   }
+.private-profile-picture{
+    width: 180px;
+    height: 100%;
+}
 
 .icon-interest{
     width: 10%;

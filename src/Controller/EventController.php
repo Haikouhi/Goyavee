@@ -130,6 +130,10 @@ class EventController extends AbstractController
      */
     public function edit(Request $request, Event $event): Response
     {
+        if ($this->getUser()->getId() !== $event->getOrganizer()->getId()) {
+            return $this->redirectToRoute('event_index');
+        }
+        
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
 
@@ -138,12 +142,14 @@ class EventController extends AbstractController
 
             return $this->redirectToRoute('event_index', [
                 'id' => $event->getId(),
+                
             ]);
         }
 
         return $this->render('event/edit.html.twig', [
             'event' => $event,
             'form' => $form->createView(),
+            'user' => $this->getUser(),
         ]);
     }
 

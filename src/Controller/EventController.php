@@ -151,6 +151,29 @@ class EventController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            /**********************************************************************/
+
+            //retrive the file send in the request
+            $file = $request->files->get('event')['photo'];
+
+            //put the path to the folder that will stock our files in a var
+            $uploads_event_directory = $this->getParameter('uploads_event_directory');
+
+            //create a var to change the name of the file
+            $filename = md5(uniqid()) . '.' . $file->guessExtension();
+
+            //move the file into the folder
+            $file->move(
+                $uploads_event_directory,
+                $filename
+            );
+
+            //set the event photo's attribut
+            $post = $event->setPhoto($filename);
+
+        /**********************************************************************/   
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('event_index', [

@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
+ * @IsGranted("ROLE_ADMIN")
  * @Route("/marketing")
  */
 class MarketingController extends AbstractController

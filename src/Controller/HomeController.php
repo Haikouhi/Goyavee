@@ -20,9 +20,11 @@ class HomeController extends AbstractController
 
         if ($this->getUser()) {
             $events = $this->getUser()->getEvents();
+            $categories = $categoryRepository->findAll();
             return $this->render('event/index.html.twig', [
                 'user' => $this->getUser(),
                 'events' => $events,
+                'categories' => $categories,
             ]);
         }
         $categories = $categoryRepository->findAll();

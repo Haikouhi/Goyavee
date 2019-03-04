@@ -16,13 +16,11 @@ use App\Form\CommentType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
- * @IsGranted("ROLE_USER")
  * @Route("/event")
  */
 class EventController extends AbstractController
 {
     /**
-     * 
      * @Route("/", name="event_index", methods={"GET"})
      */
     
@@ -102,7 +100,6 @@ class EventController extends AbstractController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
      * @Route("/{id}", name="event_show", methods={"GET", "POST"})
      */
     public function show(Request $request, Event $event): Response

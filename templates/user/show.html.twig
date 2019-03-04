@@ -15,7 +15,7 @@
                 <img src="{{ asset('/' ~ user.getPhoto()) }}" class="profile_picture" alt="profile_picture">
             </div>
             <div>
-                <p class="text-center">Hi {{ user.nickname }}</p>
+                <p class="text-center card-text">Hi {{ user.nickname }}</p>
                 {# ajouter condition si profil = rempli -70% : écrit une phrase : you should update your profile asap #}
                 <p class="text-center"><a href="{{ path('user_edit')}}">Modify Profile</a></p>
                 
@@ -75,14 +75,14 @@
 
             <hr class="hr-private-profile">
             <div>
-                <p class="text-center">Quick informations about you</p>
-                <p class="text-center">{{ user.firstname }}</p>
-                <p class="text-center">{{ user.email }}</p>
-                <p class="text-center">{{ user.birthdate ? user.birthdate|date('Y-m-d') : '' }}</p>
-                <p class="text-center"> {{ user.nationality }}</p>                
+                <p class="text-center card-title">Quick informations about you</p>
+                <p class="text-center card-text">{{ user.firstname }}</p>
+                <p class="text-center card-text">{{ user.email }}</p>
+                <p class="text-center card-text">{{ user.birthdate ? user.birthdate|date('Y-m-d') : '' }}</p>
+                <p class="text-center card-text"> {{ user.nationality }}</p>                
             </div>
             <div class="d-flex justify-content-center">
-                <a href="{{ path('event_new') }}" class="btn btn-primary btn-orange mt-2 mb-4"> Create an event</a>
+                <a href="{{ path('event_new') }}" class="btn btn-primary btn-orange mt-5 mb-4"> Create an event</a>
             </div>
         </div>
         <!-- carousels -->

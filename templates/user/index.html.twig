@@ -21,9 +21,9 @@
             <div class="col-md-10 col-lg-6 offset-lg-3">
                 <div>
                     <h4 class="text-center card-title">{{ user.nickname }}</h4>
-                    <p class="text-center card-title">Actually, my name is {{ user.firstname }}</p>
-                    <p class="text-center card-title">{{ user.birthdate ? user.birthdate|date('Y/m/d') : '' }}</p>
-                    <p class="text-center card-title">{{ user.genderForHuman() }}</p>
+                    <p class="text-center card-title">My name is {{ user.firstname }}</p>
+                    <p class="text-center card-title">{{ user.age }} years old</p>
+                    <p class="text-center card-title">{{ user.genderForHuman }}</p>
                     <br>
                     <p class="text-justify mb-5 card-text">{{ user.description }}</p>
                 </div>

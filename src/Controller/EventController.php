@@ -7,11 +7,13 @@ use App\Entity\Comment;
 use App\Entity\Location;
 use App\Form\EventType;
 use App\Repository\EventRepository;
+use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\CommentType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/event")
@@ -19,27 +21,33 @@ use App\Form\CommentType;
 class EventController extends AbstractController
 {
     /**
+     * 
      * @Route("/", name="event_index", methods={"GET"})
      */
     
-    public function index(EventRepository $eventRepository): Response
+    public function index(EventRepository $eventRepository, CategoryRepository $categoryRepository): Response
     {
 
         if ($this->getUser()) {
             
             $events = $eventRepository->findAll();
+            $categories = $categoryRepository->findAll();
             return $this->render('event/index.html.twig', [
             'events' => $events,
+            'categories' => $categories,
         ]);   
         }
 
         $events = $eventRepository->findAll();
+        $categories = $categoryRepository->findAll();
         return $this->render('event/index.html.twig', [
             'events' => $events,
+            'categories' => $categories,
         ]);
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/new", name="event_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
@@ -93,6 +101,7 @@ class EventController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/{id}", name="event_show", methods={"GET", "POST"})
      */
     public function show(Request $request, Event $event): Response
@@ -128,6 +137,7 @@ class EventController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/{id}/edit", name="event_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Event $event): Response

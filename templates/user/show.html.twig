@@ -99,6 +99,9 @@
                                             <div><img src="{{ asset('dist/images/event/' ~ event.getPhoto()) }}" alt="image_event"></div>
                                             <p class="mt-1">{{event.location.name}}</p>
                                             <p>{{ event.dateStart ? event.dateStart|date('Y/m/d') : '' }}</p>
+                                            <div class="d-flex justify-content-center">
+                                                    <a href="{{ path('event_show', {'id': event.id}) }}" class="btn btn-sm btn-orange mt-2 mb-4"> See more ... </a>
+                                            </div>                
                                         </div>
                                     </div>
                                     {% endfor %}

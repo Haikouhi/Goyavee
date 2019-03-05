@@ -135,7 +135,7 @@
 
     function showPosition(position) {
     var marker = L.marker([position.coords.latitude, position.coords.longitude]);
-    marker.addTo(carte).bindPopup('You are here.');
+    marker.addTo(carte).bindPopup('You are here.' + '<p style="font-size:50px">&#129312;<p>');
     marker.on('mouseover', function (e) {
             this.openPopup();
         });
@@ -146,6 +146,23 @@
     carte.setZoom(16).panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
 
     }
+
+   function getColor(cat) {
+        
+    switch (cat) {
+          case 1:
+            return  '<p style="font-size:50px">&#127963;<p>';
+          case 2:
+            return '<p style="font-size:50px">&#127925;<p>';
+          case 3:
+            return '<p style="font-size:50px">&#127909;<p>';
+          case 4:
+            return '<p style="font-size:50px">&#127748;<p>';
+
+          default: 
+            return '<p style="font-size:50px">&#128123;<p>';
+    }
+}
 
     $(function() {
 
@@ -170,12 +187,14 @@
     $(function() {
         $("div[data-event-id]").each(function() {
 
-            console.log('category id ' + $(this).data('event-category-id'))
+            var cat = $(this).data('event-category-id');
 
-            var markerEvent = L.marker([ $(this).data('event-location-latitude'), $(this).data('event-location-longitude') ]);
+            console.log('category id ' + $(this).data('event-category-id'));
+
+            var markerEvent = L.marker([ $(this).data('event-location-latitude'), $(this).data('event-location-longitude')]);
             
 
-            markerEvent.addTo(carte).bindPopup($(this).data('event-location-name'));
+            markerEvent.addTo(carte).bindPopup($(this).data('event-location-name') + getColor(cat));
 
             markerEvent.on('mouseover', function (e) {
                 this.openPopup();
@@ -186,6 +205,7 @@
     
         });
     });
+
 </script>
 {% endblock %}
 

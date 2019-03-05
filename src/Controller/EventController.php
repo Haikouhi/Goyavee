@@ -9,6 +9,7 @@ use App\Entity\Location;
 use App\Form\EventType;
 use App\Repository\EventRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\StatusRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -107,20 +108,15 @@ class EventController extends AbstractController
     public function show(Request $request, Event $event): Response
     {
 
-        
         $comment = new Comment();
         $commentForm = $this->createForm(CommentType::class, $comment);
-
 
         //retieve the id of the current user
         $actualUser = $this->getUser();
         
-        
-        // dump($actualUser); die;
         //set the organizer with the current user
         $comment->setUser($actualUser);
         
-
         $commentForm->handleRequest($request);
 
         if ($commentForm->isSubmitted() && $commentForm->isValid()) {
@@ -129,8 +125,6 @@ class EventController extends AbstractController
             $entityManager->flush();
 
         }
-
-        // dump($event); dump($commentForm); die;
 
         return $this->render('event/show.html.twig', [
             'event' => $event,
@@ -186,31 +180,40 @@ class EventController extends AbstractController
      * @IsGranted("ROLE_USER")
      * @Route("/participate/{id}", name="event_participate", methods={"POST"})
      */
+     public function participate( StatusRepository $statusRepository, Request $request, Event $event): Response
+    {
+        // $statuss = $statusRepository->findAll();
+        
+        // dump($statuss); die;
 
-     public function participate(Request $request, Event $event): Response
-     {
-
-    $currentEvent =  $request->get("event");  
+        $currentEvent =  $request->get("event");  
     
-     $status = new Status();
-     $status->setName("participe");
-     $status->setUser($this->getUser());
-     $status->setEvent($currentEvent); 
+        $status = new Status();
+        $status->setName("participe");
+        $status->setUser($this->getUser());
+        $status->setEvent($currentEvent); 
+
+        // if($status->getUser() == $this->getuser() && $status->getEvent() == $currentEvent) {
+
+        //     return $this->render('event/show.html.twig', [
+        //         'event' => $currentEvent,
+        // ]);
+        // }
       
-     $entityManager = $this->getDoctrine()->getManager();
-     $entityManager->persist($status);
-     $entityManager->flush();
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($status);
+        $entityManager->flush();
 
-
-     return $this->redirectToRoute('event_index');
+        return $this->render('event/show.html.twig', [
+            'event' => $currentEvent,
+        ]);
 
     }
 
     /**
      * @IsGranted("ROLE_USER")
-     * @Route("/interested/{id}", name="event_interest", methods={"POST"})
+     * @Route("/inerest/{id}", name="event_interest", methods={"POST"})
      */
-
     public function interestedIn(Request $request, Event $event): Response
     {
 
@@ -225,9 +228,12 @@ class EventController extends AbstractController
         $entityManager->persist($status);
         $entityManager->flush();
 
-
-        return $this->redirectToRoute('event_index');
+        return $this->render('event/show.html.twig', [
+            'event' => $currentEvent,
+        ]);
 
     }
+
+
 
 }

@@ -3,8 +3,8 @@
 /.env.local
 /.env.local.php
 /.env.*.local
-/public/dist/images/event/*
-/public/dist/images/user/*
+#/public/dist/images/event/*
+#/public/dist/images/user/*
 
 
 # Created by https://www.gitignore.io/api/git,osx,symfony,windows,phpstorm,visualstudiocode

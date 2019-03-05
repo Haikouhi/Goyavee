@@ -90,7 +90,7 @@
                 data-event-location-longitude = '{{ event.location.longitude }}'
                 data-event-category-id = '{{ event.category.id }}' class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
                     <article class="activity-card">
-                        <img class="card-img-top" src="{{ asset('/' ~ event.getPhoto()) }}" alt="image_activity">
+                        <img class="card-img-top" src="{{ asset('dist/images/event/' ~ event.getPhoto()) }}" alt="image_activity">
                         <div class="card-body">
                             <h5 class="card-title">{{event.name}}</h5>
                             <p class="card-text">{{ event.description|length > 90 ? event.description|slice(0, 90) ~

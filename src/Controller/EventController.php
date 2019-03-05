@@ -107,6 +107,7 @@ class EventController extends AbstractController
      */
     public function show(Request $request, Event $event): Response
     {
+       
 
         $comment = new Comment();
         $commentForm = $this->createForm(CommentType::class, $comment);
@@ -176,63 +177,197 @@ class EventController extends AbstractController
         return $this->redirectToRoute('event_index');
     }
 
+
+
     /**
      * @IsGranted("ROLE_USER")
      * @Route("/participate/{id}", name="event_participate", methods={"POST"})
      */
-     public function participate( StatusRepository $statusRepository, Request $request, Event $event): Response
+    public function participate( StatusRepository $statusRepository, Request $request, Event $event): Response
     {
-        // $statuss = $statusRepository->findAll();
-        
-        // dump($statuss); die;
 
-        $currentEvent =  $request->get("event");  
-    
+
+        $eventId =  $request->get("event")->getId();  
+        $userId = $this->getUser()->getId(); 
+
+        $event = $request->get("event");
+        $user = $this->getUser();
+
+        $dbuser= $statusRepository->findOneBy(array("user" => $this->getUser())); 
+        $dbevent = $statusRepository->findOneBy(array("event" => $event));  
+        $statusName = $statusRepository->findBy(array("name" => "participe")); 
+
+        if ($dbuser != null && $dbevent != null) {
+
+            $dbuserId = $statusRepository->findOneBy(array("user" => $this->getUser()))->getUser()->getId(); 
+            $dbeventId = $statusRepository->findOneBy(array("event" => $event))->getEvent()->getId();  
+
+                if ($userId == $dbuserId && $eventId == $dbeventId) {
+
+                    return $this->render('event/show.html.twig', [
+                        'event' => $event,
+                        'user' => $user,
+                        
+                    ]);
+                
+                }
+            }
+
+
+        else {
+
         $status = new Status();
         $status->setName("participe");
         $status->setUser($this->getUser());
-        $status->setEvent($currentEvent); 
-
-        // if($status->getUser() == $this->getuser() && $status->getEvent() == $currentEvent) {
-
-        //     return $this->render('event/show.html.twig', [
-        //         'event' => $currentEvent,
-        // ]);
-        // }
+        $status->setEvent($event);     
       
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($status);
         $entityManager->flush();
 
         return $this->render('event/show.html.twig', [
-            'event' => $currentEvent,
+            'event' => $event,
+            'status' => $status,
+
         ]);
+
+        
+
+        dump($event->getStatuses());  
+
+        die;
+
+        }
+
+
+
+
+    // FIXME: 
+
+    // /**
+    //  * @IsGranted("ROLE_USER")
+    //  * @Route("/participate/{id}", name="event_participate", methods={"POST"})
+    //  */
+    //  public function participate( StatusRepository $statusRepository, Request $request, Event $event): Response
+    // {
+
+    //     $event =  $request->get("event")->getId();  dump($event);
+    //     $user = $this->getUser()->getId(); dump($user);
+
+    //     $eventObject = $request->get("event");
+    //     $userObject = $this->getUser();
+
+    //     $dbuser = $statusRepository->findOneBy(array("user" => $this->getUser()))->getUser()->getId(); dump($dbuser);
+    //     $dbevent = $statusRepository->findOneBy(array("event" => $event))->getEvent()->getId(); dump($dbevent); 
+    //     $statusName = $statusRepository->findBy(array("name" => "participe")); 
+
+    //     if($user == $dbuser && $event == $dbevent && $statusName == "intéressé") {
+
+    //         $status = new Status();
+    //         $status->setName("participe");
+    
+    //         $status->setUser($this->getUser());
+    //         $status->setEvent($eventObject);     
+          
+    //         $entityManager = $this->getDoctrine()->getManager();
+    //         $entityManager->persist($status);
+    //         $entityManager->flush();
+    
+    //             return $this->render('event/show.html.twig', [
+    //                 'event' => $eventObject,
+    //         ]);
+    
+    //         }
+
+    //     elseif ($user == $dbuser && $event == $dbevent) {
+
+    //         return $this->render('event/show.html.twig', [
+    //             'event' => $eventObject,
+    //     ]);
+        
+    //     }
+    //     else {
+
+    //     $status = new Status();
+    //     $status->setName("participe");
+    //     $status->setUser($this->getUser());
+    //     $status->setEvent($eventObject);     
+      
+    //     $entityManager = $this->getDoctrine()->getManager();
+    //     $entityManager->persist($status);
+    //     $entityManager->flush();
+
+    //     return $this->render('event/show.html.twig', [
+    //         'event' => $eventObject,
+
+    //     ]);
+
+    //     }
 
     }
 
-    /**
-     * @IsGranted("ROLE_USER")
-     * @Route("/inerest/{id}", name="event_interest", methods={"POST"})
-     */
-    public function interestedIn(Request $request, Event $event): Response
-    {
+    // FIXME: 
 
-        $currentEvent =  $request->get("event");
+    // /**
+    //  * @IsGranted("ROLE_USER")
+    //  * @Route("/interest/{id}", name="event_interest", methods={"POST"})
+    //  */
+    // public function interestedIn(StatusRepository $statusRepository, Request $request, Event $event): Response
+    // {
 
-        $status = new Status();
-        $status->setName("intéressé");
-        $status->setUser($this->getUser());
-        $status->setEvent($currentEvent);
+    //     $event =  $request->get("event")->getId();  dump($event);
+    //     $user = $this->getUser()->getId(); dump($user);
 
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($status);
-        $entityManager->flush();
+    //     $eventObject = $request->get("event");
+    //     $userObject = $this->getUser();
 
-        return $this->render('event/show.html.twig', [
-            'event' => $currentEvent,
-        ]);
+    //     $dbuser = $statusRepository->findOneBy(array("user" => $this->getUser()))->getUser()->getId(); dump($dbuser);
+    //     $dbevent = $statusRepository->findOneBy(array("event" => $eventObject))->getEvent()->getId(); dump($dbevent); 
+    //     $statusName = $statusRepository->findBy(array("name" => "interessé")); 
 
-    }
+    //     if($user == $dbuser && $event == $dbevent && $statusName == "participe") {
+
+    //         $status = new Status();
+    //         $status->setName("intéressé");
+    
+    //         $status->setUser($this->getUser());
+    //         $status->setEvent($eventObject);     
+          
+    //         $entityManager = $this->getDoctrine()->getManager();
+    //         $entityManager->persist($status);
+    //         $entityManager->flush();
+    
+    //             return $this->render('event/show.html.twig', [
+    //                 'event' => $eventObject,
+    //         ]);
+    
+    //         }
+
+    //     elseif ($user == $dbuser && $event == $dbevent) {
+
+    //         return $this->render('event/show.html.twig', [
+    //             'event' => $eventObject,
+    //     ]);
+        
+    //     }
+    //     else {
+
+    //     $status = new Status();
+    //     $status->setName("intéressé");
+    //     $status->setUser($this->getUser());
+    //     $status->setEvent($eventObject);     
+      
+    //     $entityManager = $this->getDoctrine()->getManager();
+    //     $entityManager->persist($status);
+    //     $entityManager->flush();
+
+    //     return $this->render('event/show.html.twig', [
+    //         'event' => $eventObject,
+
+    //     ]);
+
+    //     }
+    // }
 
 
 

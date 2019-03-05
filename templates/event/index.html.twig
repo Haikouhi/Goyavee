@@ -12,7 +12,11 @@
         </div>
         <div class="row" >
             <div class="col-12 col-lg-7">
-                    {% for event in events %}
+                    {% for category in categories %}
+                    <div class="col-12 pb-3">
+                            <h2>{{category.name}}</h2>
+                        </div>
+                    {% for event in category.event %}
                 <div data-event-id = '{{ event.id }}'
                 data-event-name = '{{ event.name }}'
                 data-event-location-name = '{{ event.location.name }}'
@@ -42,6 +46,7 @@
                         </div>
                     </div>
                 </div>
+                {% endfor %}
                 <hr>
                 {% endfor %}
             </div>
@@ -135,7 +140,7 @@
 
     function showPosition(position) {
     var marker = L.marker([position.coords.latitude, position.coords.longitude]);
-    marker.addTo(carte).bindPopup('You are here.' + '<p style="font-size:50px">&#129312;<p>');
+    marker.addTo(carte).bindPopup('You are here.');
     marker.on('mouseover', function (e) {
             this.openPopup();
         });
@@ -147,54 +152,15 @@
 
     }
 
-   function getColor(cat) {
-        
-    switch (cat) {
-          case 1:
-            return  '<p style="font-size:50px">&#127963;<p>';
-          case 2:
-            return '<p style="font-size:50px">&#127925;<p>';
-          case 3:
-            return '<p style="font-size:50px">&#127909;<p>';
-          case 4:
-            return '<p style="font-size:50px">&#127748;<p>';
-
-          default: 
-            return '<p style="font-size:50px">&#128123;<p>';
-    }
-}
-
-    $(function() {
-
-        $(window).scroll(function() {
-            if($(window).scrollTop() + $(window).height() >= $(document).height()){
-               console.log('bottom')
-
-               $.ajax({
-                type: "GET",
-                url: window.location.origin + '/event/api/6',
-                success: function(res) {
-                    console.log(res);
-
-                },
-                dataType: 'json'
-            });
-            }
-          });
-
-    });
-
     $(function() {
         $("div[data-event-id]").each(function() {
 
-            var cat = $(this).data('event-category-id');
+            console.log('category id ' + $(this).data('event-category-id'))
 
-            console.log('category id ' + $(this).data('event-category-id'));
-
-            var markerEvent = L.marker([ $(this).data('event-location-latitude'), $(this).data('event-location-longitude')]);
+            var markerEvent = L.marker([ $(this).data('event-location-latitude'), $(this).data('event-location-longitude') ]);
             
 
-            markerEvent.addTo(carte).bindPopup($(this).data('event-location-name') + getColor(cat));
+            markerEvent.addTo(carte).bindPopup($(this).data('event-location-name'));
 
             markerEvent.on('mouseover', function (e) {
                 this.openPopup();
@@ -205,7 +171,6 @@
     
         });
     });
-
 </script>
 {% endblock %}
 

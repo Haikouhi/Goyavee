@@ -45,7 +45,7 @@
                         <h5 class="card-title text-center">{{ event.name }}</h5>
                         <div class="col-12 d-flex justify-content-center">
                             <form action="{{ path('event_participate', {'id': event.id}) }}" method="post">
-                                <input type="submit" value="Participate!" href="{{ path('event_show', {'id': event.id}) }}" class="btn btn-lg btn-primary btn-orange mt-2 mb-4"></a>
+                                <input type="submit" value="Participate!" href="{{ path('event_show', {'id': event.id}) }}" class="btn btn-lg btn-primary btn-orange mt-2 mb-4" style="padding-top : 0px; padding-bottom: 0px;"></a>
                             </form>
                             
                         </div>
@@ -63,7 +63,7 @@
                         <i class="fas fa-low-vision"></i>
                     </div>
                     <div>
-                            <p class="card-text pl-3">If you wish to delete your event, contact us! </p>
+                            <p class="card-text pl-2" style="font-size : 0.8em;">If you wish to delete your event, contact us! </p>
                     </div>
                     <div class="ml-2">
                         <a href="{{ path('event_index') }}" class="btn btn-blue mt-2 mb-4"> Back </a>

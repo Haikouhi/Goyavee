@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Create event | Goyavee!{% endblock %}
+{% block title %}Create event{% endblock %}
 
 {% block body %}
 
@@ -12,11 +12,7 @@
         </div>
         <div class="row" >
             <div class="col-12 col-lg-7">
-                    {% for category in categories %}
-                    <div class="col-12 pb-3">
-                            <h2>{{category.name}}</h2>
-                        </div>
-                    {% for event in category.event %}
+                    {% for event in events %}
                 <div data-event-id = '{{ event.id }}'
                 data-event-name = '{{ event.name }}'
                 data-event-location-name = '{{ event.location.name }}'
@@ -47,7 +43,6 @@
                     </div>
                 </div>
                 <hr>
-                {% endfor %}
                 {% endfor %}
             </div>
             <div class="col-12 col-lg-5 mapbox m-0 mb-3">
@@ -151,6 +146,26 @@
     carte.setZoom(16).panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
 
     }
+
+    $(function() {
+
+        $(window).scroll(function() {
+            if($(window).scrollTop() + $(window).height() >= $(document).height()){
+               console.log('bottom')
+
+               $.ajax({
+                type: "GET",
+                url: window.location.origin + '/event/api/6',
+                success: function(res) {
+                    console.log(res);
+
+                },
+                dataType: 'json'
+            });
+            }
+          });
+
+    });
 
     $(function() {
         $("div[data-event-id]").each(function() {

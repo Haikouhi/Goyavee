@@ -44,7 +44,10 @@
                     <div class="card-body">
                         <h5 class="card-title text-center">{{ event.name }}</h5>
                         <div class="col-12 d-flex justify-content-center">
-                            <a href="#" class="btn btn-lg btn-primary btn-orange mt-2 mb-4">Go there!</a>
+                            <form action="{{ path('event_participate', {'id': event.id}) }}" method="post">
+                                <input type="submit" value="Participate!" href="{{ path('event_show', {'id': event.id}) }}" class="btn btn-lg btn-primary btn-orange mt-2 mb-4"></a>
+                            </form>
+                            
                         </div>
                         <hr>
                         <p class="card-title">When and where ?</p>
@@ -73,6 +76,8 @@
                 <a onclick="getLocation()" class="btn btn-orange" style="position: absolute; top: 20px; left: 70px; z-index:210;">Find me</a>
             </div>
         </div>
+
+        
     </main>
 
 

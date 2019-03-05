@@ -16,7 +16,8 @@
                 data-event-name = '{{ event.name }}'
                 data-event-location-name = '{{ event.location.name }}'
                 data-event-location-latitude = '{{ event.location.latitude }}'
-                data-event-location-longitude = '{{ event.location.longitude }}'>
+                data-event-location-longitude = '{{ event.location.longitude }}'
+                data-event-category-id = '{{ event.category.id }}'>
                     <div id="carouselEvent" class="carousel slide d-flex justify-content-center" data-ride="carousel">
                         <div class="carousel-event mt-md-3" style="width: 500px;">
                             <div class="carousel-inner center-block justify-content-md-center">
@@ -165,38 +166,49 @@
         }
     
         /*Marqueur et zoom*/
-    
-        function showPosition(position) {
-        var marker = L.marker([position.coords.latitude, position.coords.longitude]);
-        marker.addTo(carte).bindPopup('You are here.');
-        marker.on('mouseover', function (e) {
-                this.openPopup();
-            });
-            marker.on('mouseout', function (e) {
-                this.closePopup();
-            });
-    
-        carte.setZoom(16).panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
-    
-        }
-    
         $(function() {
             $("div[data-event-id]").each(function() {
-    
-                console.log('category id ' + $(this).data('event-category-id'))
-    
-                var markerEvent = L.marker([ $(this).data('event-location-latitude'), $(this).data('event-location-longitude') ]);
-    
-                markerEvent.addTo(carte).bindPopup($(this).data('event-location-name'));
-    
-                markerEvent.on('mouseover', function (e) {
-                    this.openPopup();
-                });
-                markerEvent.on('mouseout', function (e) {
-                    this.closePopup();
-                });
+                
+                var cat = $(this).data('event-category-id');
+                
+                function getColor(cat) {
+                    
+                    switch (cat) {
+                          case 1:
+                            return  '<p style="font-size:50px">&#127963;<p>';
+                            break;
         
+                          case 2:
+                            return '<p style="font-size:50px">&#127925;<p>';
+                            break;
+        
+                        case 3:
+                            return '<p style="font-size:50px">&#127909;<p>';
+                            break;
+        
+                          case 4:
+                            return '<p style="font-size:50px">&#127748;<p>';
+                            break;
+                
+                          default: 
+                            return '<p style="font-size:50px">&#128123;<p>';
+                    }
+                }
+                    console.log('category id ' + $(this).data('event-category-id'));
+        
+                    var markerEvent = L.marker([ $(this).data('event-location-latitude'), $(this).data('event-location-longitude')]);
+                    
+        
+                    markerEvent.addTo(carte).bindPopup($(this).data('event-location-name') + getColor(cat));
+        
+                    markerEvent.on('mouseover', function (e) {
+                        this.openPopup();
+                    });
+                    markerEvent.on('mouseout', function (e) {
+                        this.closePopup();
+                    });
+            
+                });
             });
-        });
     </script>
 {% endblock %}

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Create event{% endblock %}
+{% block title %}Events{% endblock %}
 
 {% block body %}
 
@@ -140,8 +140,8 @@
 
     function showPosition(position) {
     var marker = L.marker([position.coords.latitude, position.coords.longitude]);
-    marker.addTo(carte).bindPopup('You are here.');
-    marker.on('mouseover', function (e) {
+    marker.addTo(carte).bindPopup('You are here.' + '<p style="font-size:50px">&#129312;<p>');
+            marker.on('mouseover', function (e) {
             this.openPopup();
         });
         marker.on('mouseout', function (e) {
@@ -150,17 +150,42 @@
 
     carte.setZoom(16).panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
 
-    }
+}
 
-    $(function() {
-        $("div[data-event-id]").each(function() {
+$(function() {
+    $("div[data-event-id]").each(function() {
+        
+        var cat = $(this).data('event-category-id');
+        
+        function getColor(cat) {
+            
+            switch (cat) {
+                  case 1:
+                    return  '<p style="font-size:50px">&#127963;<p>';
+                    break;
 
-            console.log('category id ' + $(this).data('event-category-id'))
+                  case 2:
+                    return '<p style="font-size:50px">&#127925;<p>';
+                    break;
 
-            var markerEvent = L.marker([ $(this).data('event-location-latitude'), $(this).data('event-location-longitude') ]);
+                case 3:
+                    return '<p style="font-size:50px">&#127909;<p>';
+                    break;
+
+                  case 4:
+                    return '<p style="font-size:50px">&#127748;<p>';
+                    break;
+        
+                  default: 
+                    return '<p style="font-size:50px">&#128123;<p>';
+            }
+        }
+            console.log('category id ' + $(this).data('event-category-id'));
+
+            var markerEvent = L.marker([ $(this).data('event-location-latitude'), $(this).data('event-location-longitude')]);
             
 
-            markerEvent.addTo(carte).bindPopup($(this).data('event-location-name'));
+            markerEvent.addTo(carte).bindPopup($(this).data('event-location-name') + getColor(cat));
 
             markerEvent.on('mouseover', function (e) {
                 this.openPopup();

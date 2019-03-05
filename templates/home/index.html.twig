@@ -167,6 +167,17 @@
 
     carte.setZoom(16).panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
 
+    coords = position.coords;
+    //console.log(coords);
+
+    // Changes not geolocalised to geolocalise : removing css blur and button
+    if (coords !== null) {
+        var map = document.getElementById('macarte');
+        var button = document.getElementById('btn-geo');
+
+        map.classList.remove('map-blur');
+        button.style.display = "none";
+    }
     }
 
    function getColor(cat) {
@@ -208,14 +219,7 @@
         });
     });
 
-            // Changes not geolocalised to geolocalise : removing css blur and button
-            if (coords !== null) {
-                var map = document.getElementById('macarte');
-                var button = document.getElementById('btn-geo');
-
-                map.classList.remove('map-blur');
-                button.style.display = "none";
-            }
+            
         }
 </script>
 {% endblock %}

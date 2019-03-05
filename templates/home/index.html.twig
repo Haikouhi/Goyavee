@@ -83,7 +83,12 @@
             </div>
             <div class="row">
                 {% for event in category.event %}
-                <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
+                <div data-event-id = '{{ event.id }}'
+                data-event-name = '{{ event.name }}'
+                data-event-location-name = '{{ event.location.name }}'
+                data-event-location-latitude = '{{ event.location.latitude }}'
+                data-event-location-longitude = '{{ event.location.longitude }}'
+                data-event-category-id = '{{ event.category.id }}' class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
                     <article class="activity-card">
                         <img class="card-img-top" src="{{ asset('/' ~ event.getPhoto()) }}" alt="image_activity">
                         <div class="card-body">

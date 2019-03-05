@@ -153,19 +153,60 @@
             }
         }
 
-        /*Marqueur et zoom*/
+ /*Marqueur et zoom*/
 
-        function showPosition(position) {
+ function showPosition(position) {
+    var marker = L.marker([position.coords.latitude, position.coords.longitude]);
+    marker.addTo(carte).bindPopup('You are here.' + '<p style="font-size:50px">&#129312;<p>');
+    marker.on('mouseover', function (e) {
+            this.openPopup();
+        });
+        marker.on('mouseout', function (e) {
+            this.closePopup();
+        });
 
-            var marker = L.marker([position.coords.latitude, position.coords.longitude]);
-            marker.addTo(carte);
+    carte.setZoom(16).panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
 
-            carte.setZoom(16).panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
+    }
 
-            coords = position.coords;
-            console.log(coords);
+   function getColor(cat) {
+        
+    switch (cat) {
+          case 1:
+            return  '<p style="font-size:50px">&#127963;<p>';
+          case 2:
+            return '<p style="font-size:50px">&#127925;<p>';
+          case 3:
+            return '<p style="font-size:50px">&#127909;<p>';
+          case 4:
+            return '<p style="font-size:50px">&#127748;<p>';
 
-            /*carte.setZoom(16);*/
+          default: 
+            return '<p style="font-size:50px">&#128123;<p>';
+    }
+}
+
+    $(function() {
+        $("div[data-event-id]").each(function() {
+
+            var cat = $(this).data('event-category-id');
+
+            console.log('category id ' + $(this).data('event-category-id'));
+
+            var markerEvent = L.marker([ $(this).data('event-location-latitude'), $(this).data('event-location-longitude')]);
+            
+
+            markerEvent.addTo(carte).bindPopup($(this).data('event-location-name') + getColor(cat));
+
+            markerEvent.on('mouseover', function (e) {
+                this.openPopup();
+            });
+            markerEvent.on('mouseout', function (e) {
+                this.closePopup();
+            });
+    
+        });
+    });
 
             // Changes not geolocalised to geolocalise : removing css blur and button
             if (coords !== null) {
@@ -176,6 +217,5 @@
                 button.style.display = "none";
             }
         }
-    }
 </script>
 {% endblock %}

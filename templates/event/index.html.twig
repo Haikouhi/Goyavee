@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Create event | Goyavee!{% endblock %}
+{% block title %}Create event{% endblock %}
 
 {% block body %}
 
@@ -46,8 +46,8 @@
                         </div>
                     </div>
                 </div>
-                <hr>
                 {% endfor %}
+                <hr>
                 {% endfor %}
             </div>
             <div class="col-12 col-lg-5 mapbox m-0 mb-3">
@@ -140,7 +140,7 @@
 
     function showPosition(position) {
     var marker = L.marker([position.coords.latitude, position.coords.longitude]);
-    marker.addTo(carte).bindPopup('You are here.' + '<p style="font-size:50px">&#129312;<p>');
+    marker.addTo(carte).bindPopup('You are here.');
     marker.on('mouseover', function (e) {
             this.openPopup();
         });
@@ -152,34 +152,15 @@
 
     }
 
-   function getColor(cat) {
-        
-    switch (cat) {
-          case 1:
-            return  '<p style="font-size:50px">&#127963;<p>';
-          case 2:
-            return '<p style="font-size:50px">&#127925;<p>';
-          case 3:
-            return '<p style="font-size:50px">&#127909;<p>';
-          case 4:
-            return '<p style="font-size:50px">&#127748;<p>';
-
-          default: 
-            return '<p style="font-size:50px">&#128123;<p>';
-    }
-}
-
     $(function() {
         $("div[data-event-id]").each(function() {
 
-            var cat = $(this).data('event-category-id');
+            console.log('category id ' + $(this).data('event-category-id'))
 
-            console.log('category id ' + $(this).data('event-category-id'));
-
-            var markerEvent = L.marker([ $(this).data('event-location-latitude'), $(this).data('event-location-longitude')]);
+            var markerEvent = L.marker([ $(this).data('event-location-latitude'), $(this).data('event-location-longitude') ]);
             
 
-            markerEvent.addTo(carte).bindPopup($(this).data('event-location-name') + getColor(cat));
+            markerEvent.addTo(carte).bindPopup($(this).data('event-location-name'));
 
             markerEvent.on('mouseover', function (e) {
                 this.openPopup();
@@ -190,7 +171,6 @@
     
         });
     });
-
 </script>
 {% endblock %}
 

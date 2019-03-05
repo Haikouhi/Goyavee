@@ -15,6 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="{{ asset('dist/css/style.css') }}" rel="stylesheet">
+    <title>{% block title %}{% endblock %} | {{ app_title }}</title>
     {% block stylesheets %}{% endblock %}
     <!--[if lt IE 9]>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/
@@ -32,61 +33,66 @@ html5shiv.js"></script> <![endif]-->
     {% endif %}
     {% block body %}{% endblock %}
 
-    <footer class="container-fluid position-relative">
-        <div class="container">
-            <div class="row mx-0 bottom justify-content-center">
-                <div class="col-12 col-md-4 col-lg-3">
-                    <p class="pb-2">Our Story</p>
-                    <ul class="justify-content-center">
-                        <li class="nav-footer"><a href="#faq-modal" class="faq-modal" data-target="#modal-FAQ"
-                                data-toggle="modal">FAQ</a></li> <br>
-                        <li class="nav-footer pb-2"><a href="#">Contact us</a></li> <br>
-                        <li class="nav-footer text-justify">
-                                After realizing how important culture is in our lives, we decided to create a website that allows you to share your favorite places and make new friends at the same time! It’s fun, free and easy! 
-                        <li class="mt-3 social-network justify-content-center text-center"><span class="fab fa-facebook"></span>
-                            <span class="fab fa-twitter"></span> <span class="fab fa-instagram"></span> <span class="fab fa-snapchat"></span></li>
-                    </ul>
-
+    
+    {% if page is defined and page == 'event_index' %}
+    {% else %}
+        <footer class="container-fluid position-relative">
+            <div class="container">
+                <div class="row mx-0 bottom justify-content-center">
+                    <div class="col-12 col-md-4 col-lg-3">
+                        <p class="pb-2">Our Story</p>
+                        <ul class="justify-content-center">
+                            <li class="nav-footer"><a href="#faq-modal" class="faq-modal" data-target="#modal-FAQ"
+                                    data-toggle="modal">FAQ</a></li> <br>
+                            <li class="nav-footer pb-2"><a href="#">Contact us</a></li> <br>
+                            <li class="nav-footer text-justify">
+                                    After realizing how important culture is in our lives, we decided to create a website that allows you to share your favorite places and make new friends at the same time! It’s fun, free and easy! 
+                            <li class="mt-3 social-network justify-content-center text-center"><span class="fab fa-facebook"></span>
+                                <span class="fab fa-twitter"></span> <span class="fab fa-instagram"></span> <span class="fab fa-snapchat"></span></li>
+                        </ul>
+    
+                    </div>
+                    <div class="col-12 col-md-2">
+                        <p class="pb-2">Langues</p>
+                        <form action="">
+                            <div class="input-group mb-3 input-group-sm">
+                                <select class="custom-select" id="inputLanguages">
+                                    <option selected>English</option>
+                                    <option value="1">Français</option>
+                                    <option value="2">Español</option>
+                                    <option value="3">Italian</option>
+                                </select>
+                            </div>
+                        </form>
+    
+                    </div>
+                    <div class="col-12 col-md-2">
+                        <p class="pb-2">Terms & Policies</p>
+                        <ul>
+                            <li class="nav-footer"><a href="#">Terms</a></li> <br>
+                            <li class="nav-footer"><a href="#">Privacy Statement</a></li> <br>
+                            <li class="nav-footer"><a href="#">Security</a></li>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-4">
+                        <a class="twitter-timeline" href="https://twitter.com/Lets_Goyavee?ref_src=twsrc%5Etfw">Tweets by
+                            Lets_Goyavee</a>
+                        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    </div>
                 </div>
-                <div class="col-12 col-md-2">
-                    <p class="pb-2">Langues</p>
-                    <form action="">
-                        <div class="input-group mb-3 input-group-sm">
-                            <select class="custom-select" id="inputLanguages">
-                                <option selected>English</option>
-                                <option value="1">Français</option>
-                                <option value="2">Español</option>
-                                <option value="3">Italian</option>
-                            </select>
-                        </div>
-                    </form>
-
-                </div>
-                <div class="col-12 col-md-2">
-                    <p class="pb-2">Terms & Policies</p>
-                    <ul>
-                        <li class="nav-footer"><a href="#">Terms</a></li> <br>
-                        <li class="nav-footer"><a href="#">Privacy Statement</a></li> <br>
-                        <li class="nav-footer"><a href="#">Security</a></li>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-12 col-md-4 col-lg-4">
-                    <a class="twitter-timeline" href="https://twitter.com/Lets_Goyavee?ref_src=twsrc%5Etfw">Tweets by
-                        Lets_Goyavee</a>
-                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                <div class="row">
+                    <div class="col-12">
+                        <p class="mt-5">
+                            Copyright @Goyavee!Team
+                        </p>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12">
-                    <p class="mt-5">
-                        Copyright @Goyavee!Team
-                    </p>
-                </div>
-            </div>
-        </div>
-
-    </footer>
+    
+        </footer>
+    
+    {% endif %}
 
     <!-- FAQ Modal -->
     <div class="modal fade faq-modal" id="modal-FAQ" tabindex="-1" role="dialog" aria-labelledby="faq-modal"

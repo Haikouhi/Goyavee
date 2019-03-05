@@ -2,7 +2,7 @@
 
 
 
-{% block title %}Profile | Goyavee!{% endblock %}
+{% block title %}Private Profile{% endblock %}
 
 {% block body %}
 {# Private profile #}
@@ -96,7 +96,7 @@
                                     <div class="item">
                                         <div class="pad15">
                                             <p class="lead">{{event.name}}</p>
-                                            <div><img src="{{ asset('dist/images/user/' ~ user.getPhoto()) }}" alt="image_event"></div>
+                                            <div><img src="{{ asset('dist/images/event/' ~ event.getPhoto()) }}" alt="image_event"></div>
                                             <p class="mt-1">{{event.location.name}}</p>
                                             <p>{{ event.dateStart ? event.dateStart|date('Y/m/d') : '' }}</p>
                                         </div>
@@ -116,7 +116,7 @@
                                 <div class="item">
                                     <div class="pad15">
                                         <p class="lead">{{event.name}}</p>
-                                        <div><img src="{{ asset('dist/images/user/' ~ user.getPhoto()) }}" alt="image_event"></div>
+                                        <div><img src="{{ asset('dist/images/event/' ~ event.getPhoto()) }}" alt="image_event"></div>
                                         <p class="mt-1">{{event.location.name}}</p>
                                         <p>{{ event.dateStart ? event.dateStart|date('Y/m/d') : '' }}</p>
                                     </div>

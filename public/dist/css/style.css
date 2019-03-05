@@ -828,11 +828,20 @@ Extra large devices (large desktops, 1200px and up) */
         left : 290px;
     }
     .mapbox{
-        height : 650px;
+        top: 120px;
+        height : 450px;
         width : 50%;
      }
 
  }
+ @media (min-width: 1441px) { 
+
+    .mapbox{
+        top: 160px;
+        height : 650px;
+        width : 50%;
+     }
+ } 
  @media (min-width: 1920px) { 
     .menucontent {
         z-index:200;

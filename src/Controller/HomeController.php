@@ -13,20 +13,10 @@ class HomeController extends AbstractController
     /**
      * Index public
      * @Route("/", name="app_index")
-     * @Route("/home", name="home")
      */
     public function index(EventRepository $eventRepository, CategoryRepository $categoryRepository)
     {
 
-        if ($this->getUser()) {
-            $events = $this->getUser()->getEvents();
-            $categories = $categoryRepository->findAll();
-            return $this->render('event/index.html.twig', [
-                'user' => $this->getUser(),
-                'events' => $events,
-                'categories' => $categories,
-            ]);
-        }
         $categories = $categoryRepository->findAll();
         $events = $eventRepository->findAll();
         return $this->render('home/index.html.twig', [

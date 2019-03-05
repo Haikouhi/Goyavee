@@ -14,6 +14,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\CommentType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
 
 /**
  * @IsGranted("ROLE_USER")
@@ -26,27 +32,45 @@ class EventController extends AbstractController
      * @Route("/", name="event_index", methods={"GET"})
      */
     
-    public function index(EventRepository $eventRepository, CategoryRepository $categoryRepository): Response
+    public function index(EventRepository $eventRepository): Response
     {
 
-        if ($this->getUser()) {
-            
-            $events = $eventRepository->findAll();
-            $categories = $categoryRepository->findAll();
-            return $this->render('event/index.html.twig', [
-            'events' => $events,
-            'categories' => $categories,
-        ]);   
-        }
+        $events = $eventRepository->findNextSixElements();
 
-        $events = $eventRepository->findAll();
-        $categories = $categoryRepository->findAll();
         return $this->render('event/index.html.twig', [
+            'user' => $this->getUser(),
+            'page' => 'event_index',
             'events' => $events,
-            'categories' => $categories,
         ]);
     }
 
+    /**
+     * 
+     * @Route("/api/{offset}", name="event_index_api", methods={"GET"})
+     */
+    public function indexApi(EventRepository $eventRepository, int $offset): JsonResponse
+    {
+        $events = $eventRepository->findNextSixElements($offset);
+        
+        foreach($events as $e) {
+        $encoders = [new XmlEncoder(), new JsonEncoder()];
+        $normalizers = [new ObjectNormalizer()];
+        $serializer = new Serializer($normalizers, $encoders);
+
+        $res = [];
+        
+            dump($e);
+
+            $json = $serializer->serialize($e, 'json');    
+            
+            $res[] = $json;
+            return new JsonResponse( $res );
+        }
+
+
+        
+
+    }
     /**
      * @IsGranted("ROLE_USER")
      * @Route("/new", name="event_new", methods={"GET","POST"})

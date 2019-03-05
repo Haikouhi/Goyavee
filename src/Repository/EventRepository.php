@@ -19,6 +19,23 @@ class EventRepository extends ServiceEntityRepository
         parent::__construct($registry, Event::class);
     }
 
+    public function findNextSixElements($offset = 0)
+    {
+        $nowDt = new \DateTime('now');
+        $nowDt = $nowDt->format('Y-m-d H:i:s');
+        $maxResult = 6;
+
+        return $this->createQueryBuilder('e')
+            ->setParameter('nowDt', $nowDt)
+            ->where('e.date_start >= :nowDt')
+            ->orderBy('e.date_start', 'ASC')
+            ->setFirstResult($offset)
+            ->setMaxResults($maxResult)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Event[] Returns an array of Event objects
     //  */
